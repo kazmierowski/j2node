@@ -1,0 +1,30 @@
+@import '../../../../styles';
+
+:host {
+  display: inline-block;
+
+  .trigger-wrapper {
+    top: 25px;
+    position: absolute;
+    right: 50px;
+
+    .menu-trigger {
+      cursor: pointer;
+    }
+
+    .menu-trigger:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.25em;
+      width: 1em;
+      height: 0.15em;
+      cursor: pointer;
+      background: $color-border-light;
+      box-shadow:
+              0 0.25em 0 0 $color-border-light,
+              0 0.5em 0 0 $color-border-light;
+    }
+  }
+
+}
