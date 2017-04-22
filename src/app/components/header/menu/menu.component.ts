@@ -17,21 +17,11 @@ export class MenuComponent implements OnInit {
     this.menuFields = [];
     this.service.getMenuFields().subscribe(
         res => {
-          console.log(res);
           for(let field in res) {
               if(res.hasOwnProperty(field)) {
-                  console.log(field);
                   this.menuFields.push(res[field]);
-                  // this.menuFields
               }
-
           }
-
-          console.log(this.menuFields);
-          // this.menuFields = res;
-          // for(let field of res) {
-          //   this.menuFields.push(field);
-          // }
         }
     )
   }
