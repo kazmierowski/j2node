@@ -28,4 +28,17 @@
       }
     }
   }
+
+  .copyright {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    font-size: 10px;
+    border-top: $left-menu-li-border-thickness solid $color-main-light;
+    bottom: $header-height + 20px;
+
+    .left-menu-version {
+      margin-top: 10px;
+    }
+  }
 }
