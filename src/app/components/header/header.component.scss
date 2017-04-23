@@ -2,13 +2,14 @@
 
 :host {
   display: block;
+  background-color: $color-main;
 
   height: $header-height;
-  border-bottom: 1px solid $color-border-light;
+  border-bottom: 2px solid $color-accent;
 
   .logo {
+    color: white;
     display: inline-block;
     font-size: 40px;
-
   }
 }
