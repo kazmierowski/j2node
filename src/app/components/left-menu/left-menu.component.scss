@@ -1,0 +1,31 @@
+@import '../../../styles';
+
+:host {
+  position: fixed;
+  left: 0;
+  top: $header-height;
+  margin: $header-padding-vertical*2 0;
+  color: $color-text-light;
+
+  width: $left-menu-width;
+  height: 100%;
+  border-right: $border-main-thickness solid $color-accent;
+  background: $color-main;
+
+  ul.left-menu-main {
+    text-align: center;
+    background-color: $color-main-dark;
+
+    li {
+      cursor: pointer;
+      padding: $left-menu-li-padding-vertical 0;
+      margin: 0 $left-menu-li-margin-horizontal;
+      border-bottom: $left-menu-li-border-thickness solid $color-main-light;
+
+      &:hover {
+        background-color: $color-main;
+        border-bottom: $left-menu-li-border-thickness solid $color-accent;
+      }
+    }
+  }
+}
