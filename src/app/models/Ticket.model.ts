@@ -1,3 +1,4 @@
+import {TicketType} from "../enums/TicketType.enum";
 /**
  * Created by Kamil on 24.04.2017.
  */
@@ -84,6 +85,10 @@ export class Ticket {
     this._type = value;
   }
 
+  public getTypeName(): string {
+    return TicketType[this.getType()];
+  }
+
   public getTitle(): string {
     return this._title;
   }
@@ -117,11 +122,11 @@ export class Ticket {
   }
 
 
-  get points(): number {
+  public getPoints(): number {
     return this._points;
   }
 
-  set points(value: number) {
+  public setPoints(value: number) {
     this._points = value;
   }
 

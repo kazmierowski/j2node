@@ -1,14 +1,18 @@
 {
   "0": {
-    "name": "to do"
+    "name": "to do",
+    "status": 1
   },
   "1": {
-    "name": "in progress"
+    "name": "in progress",
+    "status": 2
   },
   "2": {
-    "name": "blocked"
+    "name": "blocked",
+    "status": 3
   },
   "3": {
-    "name": "done"
+    "name": "done",
+    "status": 4
   }
 }

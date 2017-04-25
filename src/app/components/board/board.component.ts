@@ -19,7 +19,12 @@ export class BoardComponent implements OnInit {
         res => {
           for(let column in res){
             if(res.hasOwnProperty(column)) {
-              this.columns.push(res[column])
+              let obj = res[column];
+              this.columns.push(new Column(
+                  obj['name'],
+                  obj['maxLength'],
+                  obj['status']
+              ))
             }
           }
         }

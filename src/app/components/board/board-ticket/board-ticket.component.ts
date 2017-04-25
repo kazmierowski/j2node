@@ -15,7 +15,6 @@ export class BoardTicketComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.ticket);
   }
 
 }

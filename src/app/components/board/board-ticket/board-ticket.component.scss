@@ -2,9 +2,87 @@
 
 :host {
   display: block;
+  position: relative;
   width: 96%;
-  height: 100px;
-  margin: 2%;
+  min-height: 100px;
+  margin: $board-column-margin-left $board-column-margin-left 0 $board-column-margin-left;
+  padding-bottom: $board-ticket-points-font-size;
   box-sizing: border-box;
-  border: 1px solid $color-main-light;
+  border: $border-main-thickness solid $color-main-light;
+  border-radius: 5px;
+  float: left;
+  cursor: pointer;
+  background-color: $color-ticket-background;
+
+  .content-wrapper {
+
+    padding: $board-ticket-padding;
+    .ticket-title{
+      font-weight: bold;
+
+      &:before {
+        content: '| ';
+      }
+    }
+
+    .bottom-bar {
+      position: absolute;
+      display: table-cell;
+      height: $board-ticket-points-font-size;
+      bottom: $board-ticket-type-indicator-height;
+      right: $board-ticket-padding;
+      width: 100%;
+      text-align: right;
+      vertical-align: middle;
+
+      .ticket-points {
+        display: inline-block;
+        font-size: $board-ticket-points-font-size;
+        //background: white;
+        //border-radius: 10px;
+        //padding: 2px 5px;
+        //text-shadow: 1px 1px black;
+        color: $color-main;
+      }
+
+      .ticket-id {
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 15px;
+      }
+
+      .ticket-assignee {
+        position: absolute;
+        display: inline-block;
+        left: $board-ticket-padding;
+        bottom: 0;
+        //font-style: italic;
+        font-size: 14px;
+        margin-left: $board-ticket-padding;
+      }
+    }
+  }
+
+  .type-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: $board-ticket-type-indicator-height;
+
+    //  ticket type styling
+    &.story {
+      background-color: $color-ticket-story;
+    }
+    &.task {
+      background-color: $color-ticket-task;
+    }
+    &.bug {
+      background-color: $color-ticket-bug;
+    }
+    &.unknown {
+      background-color: $color-ticket-unknown;
+    }
+  }
+
 }
