@@ -1,0 +1,3 @@
+<div class="columnName">{{column.getName()}} : <span class="tasksNumber">{{ticketsList.length}}</span></div>
+
+<app-board-ticket *ngFor="let ticket of ticketsList" [ticket]="ticket"></app-board-ticket>

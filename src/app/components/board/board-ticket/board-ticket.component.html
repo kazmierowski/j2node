@@ -1,0 +1,16 @@
+<div class="content-wrapper">
+  <div class="ticket-title">{{ticket.getTitle()}}</div>
+  <div class="ticket-label">{{ticket.getLabel()}}</div>
+
+  <div class="bottom-bar">
+    <div class="ticket-assignee">{{ticket.getAssignee()}}</div>
+    <div class="ticket-id">{{ticket.getId()}}</div>
+    <div class="ticket-points">{{ticket.getPoints()}}</div>
+  </div>
+
+</div>
+
+
+
+
+<div class="type-indicator {{ticket.getTypeName()}}"></div>
