@@ -17,10 +17,22 @@
   .content-wrapper {
 
     padding: $board-ticket-padding;
+
     .ticket-title{
       font-weight: bold;
+      margin-bottom: 10px;
 
       &:before {
+        content: '| ';
+      }
+    }
+
+    .ticket-label {
+      font-style: italic;
+      min-width: 10px;
+
+      &:before {
+        font-weight: bold;
         content: '| ';
       }
     }
