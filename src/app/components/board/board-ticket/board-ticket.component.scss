@@ -1,0 +1,10 @@
+@import '../../../../styles';
+
+:host {
+  display: block;
+  width: 96%;
+  height: 100px;
+  margin: 2%;
+  box-sizing: border-box;
+  border: 1px solid $color-main-light;
+}

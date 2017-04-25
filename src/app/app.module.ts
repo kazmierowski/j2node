@@ -10,6 +10,8 @@ import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import {RouterModule, Routes} from "@angular/router";
 import { BoardComponent } from './components/board/board.component';
+import { BoardTicketComponent } from './components/board/board-ticket/board-ticket.component';
+import { BoardColumnComponent } from './components/board/board-column/column.component';
 
 const appRoutes: Routes = [
     { path: '', /*canActivate: [true],*/ children: [
@@ -26,7 +28,9 @@ const appRoutes: Routes = [
     MenuComponent,
     LeftMenuComponent,
     LandingPageComponent,
-    BoardComponent
+    BoardComponent,
+    BoardTicketComponent,
+    BoardColumnComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

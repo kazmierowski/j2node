@@ -1,0 +1,14 @@
+{
+  "0": {
+    "name": "to do"
+  },
+  "1": {
+    "name": "in progress"
+  },
+  "2": {
+    "name": "blocked"
+  },
+  "3": {
+    "name": "done"
+  }
+}

@@ -1,4 +1,2 @@
 <app-left-menu></app-left-menu>
-<p>
-  Welcome on your board!
-</p>
+<app-board-column *ngFor="let column of columns" [column]="column"></app-board-column>

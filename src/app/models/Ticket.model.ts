@@ -4,208 +4,220 @@
 
 export class Ticket {
 
-    private _id: string;
-    private _type: number;
-    private _title: string;
-    private _createDate: string;
-    private _lastModificationDate: string;
-    private _description: string;
-    private _assignee: string;
-    private _reporter: string;
-    private _watchers; // todo: array - find a way to bind that
-    private _priority: number; // todo: create enum
-    private _label: string;
-    private _environment: string;
-    private _sprintName: string;
-    private _status: number; // todo: create enum
-    private _attachments; // todo: array - find a way to bind that
+  private _id: string;
+  private _type: number;
+  private _title: string;
+  private _createDate: string;
+  private _lastModificationDate: string;
+  private _description: string;
+  private _points: number;
+  private _assignee: string;
+  private _reporter: string;
+  private _watchers; // todo: array - find a way to bind that
+  private _priority: number; // todo: create enum
+  private _label: string;
+  private _environment: string;
+  private _sprintName: string;
+  private _status: number; // todo: create enum
+  private _attachments; // todo: array - find a way to bind that
 
-    private _comments; // todo: array - find a way to bind that
-    private _workLog; // todo: array - find a way to bind that
-    private _history; // todo: array - find a way to bind that
-
-
-    constructor(id: string,
-                type: number,
-                title: string,
-                createDate: string,
-                lastModificationDate: string,
-                description: string,
-                assignee: string,
-                reporter: string,
-                watchers,
-                priority: number,
-                label: string,
-                environment: string,
-                sprintName: string,
-                status: number,
-                attachments,
-                comments,
-                workLog,
-                history) {
-
-        this._id = id;
-        this._type = type;
-        this._title = title;
-        this._createDate = createDate;
-        this._lastModificationDate = lastModificationDate;
-        this._description = description;
-        this._assignee = assignee;
-        this._reporter = reporter;
-        this._watchers = watchers;
-        this._priority = priority;
-        this._label = label;
-        this._environment = environment;
-        this._sprintName = sprintName;
-        this._status = status;
-        this._attachments = attachments;
-        this._comments = comments;
-        this._workLog = workLog;
-        this._history = history;
-    }
+  private _comments; // todo: array - find a way to bind that
+  private _workLog; // todo: array - find a way to bind that
+  private _history; // todo: array - find a way to bind that
 
 
-    public getId(): string {
-        return this._id;
-    }
+  constructor(id: string,
+              type: number,
+              title: string,
+              createDate: string,
+              lastModificationDate: string,
+              description: string,
+              points: number,
+              assignee: string,
+              reporter: string,
+              watchers,
+              priority: number,
+              label: string,
+              environment: string,
+              sprintName: string,
+              status: number,
+              attachments,
+              comments,
+              workLog,
+              history) {
 
-    public setId(value: string) {
-        this._id = value;
-    }
+    this._id = id;
+    this._type = type;
+    this._title = title;
+    this._createDate = createDate;
+    this._lastModificationDate = lastModificationDate;
+    this._description = description;
+    this._points = points;
+    this._assignee = assignee;
+    this._reporter = reporter;
+    this._watchers = watchers;
+    this._priority = priority;
+    this._label = label;
+    this._environment = environment;
+    this._sprintName = sprintName;
+    this._status = status;
+    this._attachments = attachments;
+    this._comments = comments;
+    this._workLog = workLog;
+    this._history = history;
+  }
 
-    public getType(): number {
-        return this._type;
-    }
 
-    public setType(value: number) {
-        this._type = value;
-    }
+  public getId(): string {
+    return this._id;
+  }
 
-    public getTitle(): string {
-        return this._title;
-    }
+  public setId(value: string) {
+    this._id = value;
+  }
 
-    public setTitle(value: string) {
-        this._title = value;
-    }
+  public getType(): number {
+    return this._type;
+  }
 
-    public getCreateDate(): string {
-        return this._createDate;
-    }
+  public setType(value: number) {
+    this._type = value;
+  }
 
-    public setCreateDate(value: string) {
-        this._createDate = value;
-    }
+  public getTitle(): string {
+    return this._title;
+  }
 
-    public getLastModificationDate(): string {
-        return this._lastModificationDate;
-    }
+  public setTitle(value: string) {
+    this._title = value;
+  }
 
-    public setLastModificationDate(value: string) {
-        this._lastModificationDate = value;
-    }
+  public getCreateDate(): string {
+    return this._createDate;
+  }
 
-    public getDescription(): string {
-        return this._description;
-    }
+  public setCreateDate(value: string) {
+    this._createDate = value;
+  }
 
-    public setDescription(value: string) {
-        this._description = value;
-    }
+  public getLastModificationDate(): string {
+    return this._lastModificationDate;
+  }
 
-    public getAssignee(): string {
-        return this._assignee;
-    }
+  public setLastModificationDate(value: string) {
+    this._lastModificationDate = value;
+  }
 
-    public setAssignee(value: string) {
-        this._assignee = value;
-    }
+  public getDescription(): string {
+    return this._description;
+  }
 
-    public getReporter(): string {
-        return this._reporter;
-    }
+  public setDescription(value: string) {
+    this._description = value;
+  }
 
-    public setReporter(value: string) {
-        this._reporter = value;
-    }
 
-    public getWatchers() {
-        return this._watchers;
-    }
+  get points(): number {
+    return this._points;
+  }
 
-    public setWatchers(value) {
-        this._watchers = value;
-    }
+  set points(value: number) {
+    this._points = value;
+  }
 
-    public getPriority(): number {
-        return this._priority;
-    }
+  public getAssignee(): string {
+    return this._assignee;
+  }
 
-    public setPriority(value: number) {
-        this._priority = value;
-    }
+  public setAssignee(value: string) {
+    this._assignee = value;
+  }
 
-    public getLabel(): string {
-        return this._label;
-    }
+  public getReporter(): string {
+    return this._reporter;
+  }
 
-    public setLabel(value: string) {
-        this._label = value;
-    }
+  public setReporter(value: string) {
+    this._reporter = value;
+  }
 
-    public getEnvironment(): string {
-        return this._environment;
-    }
+  public getWatchers() {
+    return this._watchers;
+  }
 
-    public setEnvironment(value: string) {
-        this._environment = value;
-    }
+  public setWatchers(value) {
+    this._watchers = value;
+  }
 
-    public getSprintName(): string {
-        return this._sprintName;
-    }
+  public getPriority(): number {
+    return this._priority;
+  }
 
-    public setSprintName(value: string) {
-        this._sprintName = value;
-    }
+  public setPriority(value: number) {
+    this._priority = value;
+  }
 
-    public getStatus(): number {
-        return this._status;
-    }
+  public getLabel(): string {
+    return this._label;
+  }
 
-    public setStatus(value: number) {
-        this._status = value;
-    }
+  public setLabel(value: string) {
+    this._label = value;
+  }
 
-    public getAttachments() {
-        return this._attachments;
-    }
+  public getEnvironment(): string {
+    return this._environment;
+  }
 
-    public setAttachments(value) {
-        this._attachments = value;
-    }
+  public setEnvironment(value: string) {
+    this._environment = value;
+  }
 
-    public getComments() {
-        return this._comments;
-    }
+  public getSprintName(): string {
+    return this._sprintName;
+  }
 
-    public setComments(value) {
-        this._comments = value;
-    }
+  public setSprintName(value: string) {
+    this._sprintName = value;
+  }
 
-    public getWorkLog() {
-        return this._workLog;
-    }
+  public getStatus(): number {
+    return this._status;
+  }
 
-    public setWorkLog(value) {
-        this._workLog = value;
-    }
+  public setStatus(value: number) {
+    this._status = value;
+  }
 
-    public getHistory() {
-        return this._history;
-    }
+  public getAttachments() {
+    return this._attachments;
+  }
 
-    public setHistory(value) {
-        this._history = value;
-    }
+  public setAttachments(value) {
+    this._attachments = value;
+  }
+
+  public getComments() {
+    return this._comments;
+  }
+
+  public setComments(value) {
+    this._comments = value;
+  }
+
+  public getWorkLog() {
+    return this._workLog;
+  }
+
+  public setWorkLog(value) {
+    this._workLog = value;
+  }
+
+  public getHistory() {
+    return this._history;
+  }
+
+  public setHistory(value) {
+    this._history = value;
+  }
 }
