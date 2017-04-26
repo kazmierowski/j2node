@@ -8,18 +8,20 @@ import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/header/menu/menu.component';
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule, Routes} from '@angular/router';
 import { BoardComponent } from './components/board/board.component';
 import { BoardTicketComponent } from './components/board/board-ticket/board-ticket.component';
 import { BoardColumnComponent } from './components/board/board-column/column.component';
 import { BackgroundColorDirective } from './directives/background-color.directive';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
-    { path: '', /*canActivate: [true],*/ children: [
+        { path: '', canActivate: [AuthGuard], children: [
         { path: '', redirectTo: 'j2node', pathMatch: 'full'},
         { path: 'j2node', component: LandingPageComponent },
         { path: 'board', component: BoardComponent }
-    ]},
+        ]}, {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     BoardComponent,
     BoardTicketComponent,
     BoardColumnComponent,
-    BackgroundColorDirective
+    BackgroundColorDirective,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -40,7 +43,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
