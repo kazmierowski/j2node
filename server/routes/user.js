@@ -10,8 +10,8 @@ router.get('/allUsers', (req, res) => {
 
     let connection = connect.createConnection();
 
-    connection.query('select * FROM user_tab', function(e, rows, fields) {
-        if(e) throw e;
+    connection.query('select * FROM user_tab', function (e, rows, fields) {
+        if (e) throw e;
         res.send(rows);
     });
 
@@ -22,8 +22,8 @@ router.get('/getUser/:id', (req, res) => {
 
     let connection = connect.createConnection();
 
-    connection.query('select * FROM user_tab WHERE user_id = ' + req.params.id, function(e, rows, fields) {
-        if(e) throw e;
+    connection.query('select * FROM user_tab WHERE user_id = ' + req.params.id, function (e, rows, fields) {
+        if (e) throw e;
         res.send(rows);
     });
 });
@@ -32,8 +32,9 @@ router.get('/deleteUserType/:id', (req, res) => {
 
     let connection = connect.createConnection();
 
-    connection.query('DELETE FROM userType_tab WHERE userType_id = ' + req.params.id, function(e, rows, fields) {
-        if(e) throw e;
+    connection.query('DELETE FROM userType_tab WHERE userType_id = ' + req.params.id, function (e, rows, fields) {
+        if (e) throw e;
+        res.send(true);
     });
 
     connection.end();
