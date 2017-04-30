@@ -8,6 +8,7 @@ const http = require('http');
 const bodyParser = require('body-parser');
 
 const api = require('./server/routes/api');
+const user = require('./server/routes/user');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Set our api routes
 app.use('/api', api);
+app.use('/user', user);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
