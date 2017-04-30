@@ -11,11 +11,11 @@ router.get('/allUsers', (req, res) => {
     let connection = connect.createConnection();
 
     connection.query('select * FROM user_tab', function(e, rows, fields) {
-        if(e) throw e;
-        res.send(rows);
-    });
+    if(e) throw e;
+    res.send(rows);
+});
 
-    connection.end();
+connection.end();
 });
 
 router.get('/getUser/:id', (req, res) => {

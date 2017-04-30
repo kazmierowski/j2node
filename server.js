@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 
 const api = require('./server/routes/api');
 const user = require('./server/routes/user');
+const auth = require('./server/routes/auth');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // Set our api routes
 app.use('/api', api);
 app.use('/user', user);
+app.use('/auth', auth);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

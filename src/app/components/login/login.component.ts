@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import {isUndefined} from 'util';
+import {LoginService} from './login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
   public username: string;
   public userpass: string;
   public communicat: string;
-  login() {
-      if (!isUndefined(this.username) && !isUndefined(this.userpass)) {
-        this.communicat = this.username + '_' + this.userpass;
-      } else {
-        this.communicat = 'Login or password is empty!';
-      }
+  constructor(private loginService: LoginService) {}
+  public login() {
+      console.log(this.username + '_' + this.userpass);
+      this.loginService.getLogin(this.username, this.userpass).subscribe(
+        (res) => console.log(res)
+      );
   }
-
-  constructor() { }
 
   ngOnInit() {
   }
