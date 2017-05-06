@@ -10,10 +10,10 @@ const mysql = require('mysql');
 
 function createConnection(){
     let connection = mysql.createConnection({
-        host: 'dev-live.co.uk',
-        user: 'devlivec_j2node',
-        password: 'j2node123',
-        database: 'devlivec_j2node'
+        host: 'j2node.com',
+        user: 'jnodecom_j2',
+        password: 'j2nodecom',
+        database: 'jnodecom_db'
     });
 
     return connection;
