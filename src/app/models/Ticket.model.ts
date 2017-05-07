@@ -5,51 +5,54 @@ import {TicketType} from "../enums/TicketType.enum";
 
 export class Ticket {
 
-  private _id: string;
+  private _id: number;
   private _type: number;
   private _title: string;
+  private _inProjectId: string;
   private _createDate: string;
   private _lastModificationDate: string;
   private _description: string;
   private _points: number;
-  private _assignee: string;
-  private _reporter: string;
-  private _watchers; // todo: array - find a way to bind that
+  private _assignee: number;
+  private _reporter: number;
+  private _watchers: number; // todo: array - find a way to bind that
   private _priority: number; // todo: create enum
-  private _label: string;
+  private _label: number;
   private _environment: string;
   private _sprintName: string;
   private _status: number; // todo: create enum
-  private _attachments; // todo: array - find a way to bind that
+  private _attachments: number; // todo: array - find a way to bind that
 
-  private _comments; // todo: array - find a way to bind that
-  private _workLog; // todo: array - find a way to bind that
-  private _history; // todo: array - find a way to bind that
+  private _comments: number; // todo: array - find a way to bind that
+  private _workLog: number; // todo: array - find a way to bind that
+  private _history: number; // todo: array - find a way to bind that
 
 
-  constructor(id: string,
+  constructor(id: number,
               type: number,
               title: string,
+              inProjectId: string,
               createDate: string,
               lastModificationDate: string,
               description: string,
               points: number,
-              assignee: string,
-              reporter: string,
-              watchers,
+              assignee: number,
+              reporter: number,
+              watchers: number,
               priority: number,
-              label: string,
+              label: number,
               environment: string,
               sprintName: string,
               status: number,
-              attachments,
-              comments,
-              workLog,
-              history) {
+              attachments: number,
+              comments: number,
+              workLog: number,
+              history: number) {
 
     this._id = id;
     this._type = type;
     this._title = title;
+    this._inProjectId = inProjectId;
     this._createDate = createDate;
     this._lastModificationDate = lastModificationDate;
     this._description = description;
@@ -69,11 +72,11 @@ export class Ticket {
   }
 
 
-  public getId(): string {
+  public getId(): number {
     return this._id;
   }
 
-  public setId(value: string) {
+  public setId(value: number) {
     this._id = value;
   }
 
@@ -95,6 +98,14 @@ export class Ticket {
 
   public setTitle(value: string) {
     this._title = value;
+  }
+
+  public getInProjectId(): string {
+    return this._inProjectId;
+  }
+
+  public setInProjectId(value: string) {
+    this._inProjectId = value;
   }
 
   public getCreateDate(): string {
@@ -130,19 +141,19 @@ export class Ticket {
     this._points = value;
   }
 
-  public getAssignee(): string {
+  public getAssignee(): number {
     return this._assignee;
   }
 
-  public setAssignee(value: string) {
+  public setAssignee(value: number) {
     this._assignee = value;
   }
 
-  public getReporter(): string {
+  public getReporter(): number {
     return this._reporter;
   }
 
-  public setReporter(value: string) {
+  public setReporter(value: number) {
     this._reporter = value;
   }
 
@@ -162,11 +173,11 @@ export class Ticket {
     this._priority = value;
   }
 
-  public getLabel(): string {
+  public getLabel(): number {
     return this._label;
   }
 
-  public setLabel(value: string) {
+  public setLabel(value: number) {
     this._label = value;
   }
 
