@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService) {}
   public login() {
       console.log(this.username + '_' + this.userpass);
-      this.loginService.getLogin(this.username, this.userpass).subscribe(
+      this.loginService.login(this.username, this.userpass).subscribe(
         (res) => console.log(res)
       );
   }

@@ -10,7 +10,7 @@ router.get('/login/:login/:password', (req, res) => {
     console.log('Weszło');
     let connection = connect.createConnection();
 
-    connection.query('select checkUser('+ req.params.username +','+ req.params.password +') as answer', function(e, rows, fields) {
+    connection.query('call checkUser('+ req.params.username +','+ req.params.password +') as answer', function(e, rows, fields) {
         if(e) throw e;
         console.log('RESPONSE');
         res.send(rows);
