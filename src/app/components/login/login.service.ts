@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 
 @Injectable()
 export class LoginService {
-    loginURL = '/auth';
+    loginURL = '/user/auth';
     constructor(private http: Http) {}
     public login (username: string, userpass: string) {
         const user = {pass: '', name: '' };
@@ -16,7 +16,7 @@ export class LoginService {
 
         return this.http.post(this.loginURL, user, options) // ...using post request
           .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-          .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+          .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
     }
     public getLogin(username: string, password: string) {
         console.log('login w LoginService');

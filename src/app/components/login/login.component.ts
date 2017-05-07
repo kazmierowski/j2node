@@ -15,7 +15,13 @@ export class LoginComponent implements OnInit {
   public login() {
       console.log(this.username + '_' + this.userpass);
       this.loginService.login(this.username, this.userpass).subscribe(
-        (res) => console.log(res)
+        (res) => {
+            const temp = res[0].answer;
+            console.log(temp);
+            if (temp == 1) {
+                localStorage.setItem('zalogowany', 'true');
+            }
+        }
       );
   }
 

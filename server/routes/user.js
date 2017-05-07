@@ -44,14 +44,15 @@ router.get('/deleteUserType/:id', (req, res) => {
 
 router.post('/auth', (req, res) => {
     let connection = connect.createConnection();
+    console.log(req.body);
+    console.log(req.body.name);
+    console.log(req.body.pass);
 
-    console.log(req.body.user.name);
-    console.log(req.body.user.pass);
-
-    // connection.query('DELETE FROM userType_tab WHERE userType_id = ' + req.params.id, function (e, rows, fields) {
-    //     if (e) throw e;
-    //     res.send(true);
-    // });
+    connection.query("select checkUser('"+ req.body.name +"','"+ req.body.pass +"') as answer", function(e, rows, fields) {
+        if (e) throw e;
+        console.log(rows);
+        res.send(JSON.stringify(rows));
+    });
 
     connection.end();
 });
