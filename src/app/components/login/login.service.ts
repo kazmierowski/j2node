@@ -19,7 +19,6 @@ export class LoginService {
           .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
     }
     public getLogin(username: string, password: string) {
-        console.log('login w LoginService');
         return this.http.get('/auth/login?username=' + username + '&userpass=' + password)
             .map((res: Response) => res.json()
                );
