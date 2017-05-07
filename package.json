@@ -22,6 +22,7 @@
     "@angular/router": "^4.0.0",
     "body-parser": "^1.17.1",
     "core-js": "^2.4.1",
+    "cors": "^2.8.3",
     "express": "^4.15.2",
     "mysql": "^2.13.0",
     "normalize.css": "^6.0.0",
@@ -31,7 +32,7 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0",
+    "@angular/cli": "1.0.2",
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",

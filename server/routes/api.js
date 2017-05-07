@@ -2,6 +2,8 @@
  * Created by Kamil on 17.04.2017.
  */
 
+"use strict";
+
 const express = require('express');
 const connect = require('./../db/db_connect');
 const router = express.Router();
