@@ -17,7 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
-        { path: '', canActivateChild: [AuthGuard], children: [
+        { path: '', canActivate: [AuthGuard], children: [
             { path: '', redirectTo: 'j2node', pathMatch: 'full'},
             { path: 'j2node', component: LandingPageComponent },
             { path: 'board', component: BoardComponent }
