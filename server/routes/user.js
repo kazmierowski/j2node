@@ -46,6 +46,7 @@ router.get('/deleteUserType/:id', (req, res) => {
 
 router.post('/auth', (req, res) => {
     let connection = connect.createConnection();
+    let connection2 = connect.createConnection();
 
     connection.query("select checkUser('" + req.body.name + "','" + req.body.pass + "') as answer", function (e, rows, fields) {
         if (e) throw e;
@@ -60,6 +61,11 @@ router.post('/auth', (req, res) => {
             let options = {
                 maxAge: expires
             };
+
+            console.log(token);
+
+            connection2.query('CALL saveSession("' + token + '", "' + req.body.name + '")');
+            connection2.end();
 
             res.cookie('usr', token, options);
             res.send(true);
