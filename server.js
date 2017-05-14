@@ -7,6 +7,8 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const jwt = require('jwt-simple');
+const cookieParser = require('cookie-parser');
 
 const api = require('./server/routes/api');
 const user = require('./server/routes/user');
@@ -20,6 +22,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(cookieParser());
+
+// Session
+app.set('jwtTokenSecret', 'loki');
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));

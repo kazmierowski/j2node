@@ -15,9 +15,8 @@ export class LoginComponent implements OnInit {
   public login() {
       this.loginService.login(this.username, this.userpass).subscribe(
         (res) => {
-            const temp = res[0].answer;
-            if (temp == 1) {
-                localStorage.setItem('zalogowany', 'true');
+            console.log(res);
+            if (res === true) {
                 this.router.navigate(['/board']);
             }
         }
