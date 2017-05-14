@@ -7,6 +7,8 @@
 const express = require('express');
 const connect = require('./../db/db_connect');
 const router = express.Router();
+const jwt = require('jwt-simple');
+const moment = require('moment');
 
 router.get('/allUsers', (req, res) => {
 
@@ -44,10 +46,33 @@ router.get('/deleteUserType/:id', (req, res) => {
 
 router.post('/auth', (req, res) => {
     let connection = connect.createConnection();
+    let connection2 = connect.createConnection();
 
-    connection.query("select checkUser('"+ req.body.name +"','"+ req.body.pass +"') as answer", function(e, rows, fields) {
+    connection.query("select checkUser('" + req.body.name + "','" + req.body.pass + "') as answer", function (e, rows, fields) {
         if (e) throw e;
-        res.send(JSON.stringify(rows));
+
+        if (rows[0].answer === '1') {
+            let expires = 1000 * 60 * 15; // 15 minutes
+            let token = jwt.encode({
+                iss: req.body.name,
+                exp: moment().add(1, 'days').valueOf()
+            }, req.app.get('jwtTokenSecret'));
+
+            let options = {
+                maxAge: expires
+            };
+
+            connection2.query('CALL saveSession("' + token + '", "' + req.body.name + '")');
+            connection2.end();
+
+            res.cookie('usr', token, options);
+            res.send(true);
+
+        } else if (rows[0].answer === '0') {
+            res.send(JSON.stringify(false));
+        } else {
+        //    todo: add function to log events like this
+        }
     });
 
     connection.end();

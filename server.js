@@ -7,10 +7,13 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const jwt = require('jwt-simple');
+const cookieParser = require('cookie-parser');
 
 const api = require('./server/routes/api');
 const user = require('./server/routes/user');
 const ticket = require('./server/routes/ticket');
+const session = require('./server/db/db_session');
 
 const app = express();
 
@@ -20,15 +23,35 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(cookieParser());
+
+// Session
+app.set('jwtTokenSecret', 'loki');
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // todo: CORS domain - to be removed on live
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
+});
+
+app.use(function (req, res, next) {
+    if (req.cookies.usr) {
+        session.check(req.cookies.usr, function (check) {
+            if (check) {
+                next();
+            } else {
+                // todo: check if this next() is ok in here... or maybe callback ?
+                session.remove(jwt.decode(req.cookies.usr, app.get('jwtTokenSecret')).iss);
+                next();
+            }
+        })
+    } else {
+        next();
+    }
 });
 
 // Set our api routes
@@ -38,7 +61,7 @@ app.use('/ticket', ticket);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 /**
@@ -56,3 +79,5 @@ const server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 server.listen(port, () => console.log(`API running on localhost:${port}`));
+
+exports.app = app;

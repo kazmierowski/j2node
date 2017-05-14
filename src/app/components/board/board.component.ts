@@ -24,6 +24,7 @@ export class BoardComponent implements OnInit {
                   obj['name'],
                   obj['maxLength'],
                   obj['status']
+
               ))
             }
           }
