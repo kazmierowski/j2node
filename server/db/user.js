@@ -14,6 +14,8 @@ let getToken = (userLogin, callback) => {
             callback(rows[0].token);
         }
     });
+
+    connection.end();
 };
 
 exports.getToken = getToken;

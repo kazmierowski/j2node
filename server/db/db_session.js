@@ -14,6 +14,8 @@ let saveSession = (token, userLogin) => {
     let connection = connect.createConnection();
 
     connection.query('CALL saveSession("' + token + '", "' + userLogin + '")');
+
+    connection.end();
 };
 
 let removeSession = (userLogin) => {
