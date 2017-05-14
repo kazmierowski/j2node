@@ -55,14 +55,12 @@ router.post('/auth', (req, res) => {
             let expires = 1000 * 60 * 15; // 15 minutes
             let token = jwt.encode({
                 iss: req.body.name,
-                exp: expires
+                exp: moment().add(1, 'days').valueOf()
             }, req.app.get('jwtTokenSecret'));
 
             let options = {
                 maxAge: expires
             };
-
-            console.log(token);
 
             connection2.query('CALL saveSession("' + token + '", "' + req.body.name + '")');
             connection2.end();

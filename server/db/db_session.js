@@ -4,12 +4,35 @@
 
 const express = require('express');
 const connect = require('./../db/db_connect');
+const server = require('./../../server');
 const router = express.Router();
 const jwt = require('jwt-simple');
 const moment = require('moment');
+const userService = require('./user');
 
-let saveSession = (userLogin, token) => {
+let saveSession = (token, userLogin) => {
     let connection = connect.createConnection();
 
-    connection.query('CALL saveSession(' + token + ', ' + userLogin + ')');
+    connection.query('CALL saveSession("' + token + '", "' + userLogin + '")');
 };
+
+let removeSession = (userLogin) => {
+    let connection = connect.createConnection();
+
+    connection.query('UPDATE user_tab SET user_sessionId = null WHERE user_login = "' + userLogin + '"');
+
+    connection.end();
+};
+
+let checkSession = (token, callback) => {
+
+    let iss = jwt.decode(token, server.app.get('jwtTokenSecret')).iss;
+
+    userService.getToken(iss, function(serverToken) {
+        callback(serverToken === token);
+    });
+};
+
+exports.check = checkSession;
+exports.save = saveSession;
+exports.remove = removeSession;
