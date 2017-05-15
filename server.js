@@ -9,11 +9,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jwt-simple');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 
 const api = require('./server/routes/api');
 const user = require('./server/routes/user');
 const ticket = require('./server/routes/ticket');
-const session = require('./server/db/db_session');
+// const session = require('./server/db/db_session');
 
 const app = express();
 
@@ -23,10 +25,29 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(cookieParser());
+// app.use(cookieParser());
 
 // Session
 app.set('jwtTokenSecret', 'loki');
+
+app.use(session({
+    key: 'usr',
+    secret: 'loki',
+    store: new MySQLStore({
+        host: 'j2node.com',
+        user: 'jnodecom_j2',
+        password: 'j2nodecom',
+        database: 'jnodecom_db'
+    }),
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        name: 'usr',
+        maxAge: 600000,
+        secure: false,
+        httpOnly: false
+    }
+}));
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -38,21 +59,21 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(function (req, res, next) {
-    if (req.cookies.usr) {
-        session.check(req.cookies.usr, function (check) {
-            if (check) {
-                next();
-            } else {
-                // todo: check if this next() is ok in here... or maybe callback ?
-                session.remove(jwt.decode(req.cookies.usr, app.get('jwtTokenSecret')).iss);
-                next();
-            }
-        })
-    } else {
-        next();
-    }
-});
+// app.use(function (req, res, next) {
+//     if (req.cookies.usr) {
+//         session.check(req.cookies.usr, function (check) {
+//             if (check) {
+//                 next();
+//             } else {
+//                 // todo: check if this next() is ok in here... or maybe callback ?
+//                 session.remove(jwt.decode(req.cookies.usr, app.get('jwtTokenSecret')).iss);
+//                 next();
+//             }
+//         })
+//     } else {
+//         next();
+//     }
+// });
 
 // Set our api routes
 app.use('/api', api);
