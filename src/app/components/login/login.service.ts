@@ -10,10 +10,10 @@ export class LoginService {
     constructor(private http: Http) {
     }
 
-    public login(username: string, userpass: string) {
-        const user = {pass: '', name: ''};
+    public login(useremail: string, userpass: string) {
+        const user = {pass: '', email: ''};
         user.pass = userpass;
-        user.name = username;
+        user.email = useremail;
         const headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
         const options = new RequestOptions({headers: headers}); // Create a request option
 
@@ -22,8 +22,8 @@ export class LoginService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
     }
 
-    public getLogin(username: string, password: string) {
-        return this.http.get('/auth/login?username=' + username + '&userpass=' + password)
+    public getLogin(useremail: string, password: string) {
+        return this.http.get('/auth/login?username=' + useremail + '&userpass=' + password)
             .map((res: Response) => res.json());
     }
 }

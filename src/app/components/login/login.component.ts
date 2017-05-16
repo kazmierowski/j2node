@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
   providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
-  public username: string;
+  public useremail: string;
   public userpass: string;
   public communicat: string;
   constructor(private loginService: LoginService, private router: Router) {}
   public login() {
-      this.loginService.login(this.username, this.userpass).subscribe(
+      this.loginService.login(this.useremail, this.userpass).subscribe(
         (res) => {
             console.log(res);
             if (res === true) {

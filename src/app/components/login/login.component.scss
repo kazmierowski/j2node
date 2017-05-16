@@ -13,7 +13,7 @@
     margin: auto auto 0 -200px;
     border-radius: 3px;
   }
-  .loginInput{
+  .emailInput{
     position: relative;
     padding-left: 10px;
     color: $color-main;
@@ -37,7 +37,7 @@
     cursor: pointer;
     color: $color-main-light;
   }
-  .loginInput:focus{
+  .emailInput:focus{
     border: 3px solid $color-accent;
     width: 384px;
     height: 30px;

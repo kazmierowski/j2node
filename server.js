@@ -39,7 +39,12 @@ app.use(session({
         password: 'j2nodecom',
         database: 'jnodecom_db',
         schema: {
-            tableName: 'session_tab'
+            tableName: 'session_tab',
+            columnNames: {
+                session_id: 'session_id',
+                expires: 'session_expires',
+                data: 'session_data'
+            }
         }
     }),
     resave: false,
@@ -63,32 +68,13 @@ app.use(function (req, res, next) {
 
 app.use(function(req, res, next) {
 
-    console.log(req.session.userName);
-    console.log(req.url);
-
-    // we need to check something here that we are setting on login
-    if(req.session.userName !== undefined) {
+    /** we need to check something here that we are setting on login (f.e. email) **/
+    if(req.session.userEmail !== undefined) {
         next();
     } else {
         req.url === '/login' || req.url === '/user/auth' ? next() : res.redirect('/login');
     }
 });
-
-// app.use(function (req, res, next) {
-//     if (req.cookies.usr) {
-//         session.check(req.cookies.usr, function (check) {
-//             if (check) {
-//                 next();
-//             } else {
-//                 // todo: check if this next() is ok in here... or maybe callback ?
-//                 session.remove(jwt.decode(req.cookies.usr, app.get('jwtTokenSecret')).iss);
-//                 next();
-//             }
-//         })
-//     } else {
-//         next();
-//     }
-// });
 
 // Set our api routes
 app.use('/api', api);

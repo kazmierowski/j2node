@@ -18,4 +18,13 @@ let getToken = (userLogin, callback) => {
     connection.end();
 };
 
+let saveSessionId = (sessionId, userId) => {
+    let connection = connect.createConnection();
+
+    connection.query('CALL saveSessionId("' + sessionId + '", "' + userId + '")');
+
+    connection.end();
+};
+
 exports.getToken = getToken;
+exports.saveSessionId = saveSessionId;
