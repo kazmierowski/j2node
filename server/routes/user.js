@@ -55,39 +55,17 @@ router.post('/auth', (req, res) => {
         else if (rows[0].answer === '1') {
             console.log(req.session);
             req.session.save(function() {
-                res.cookie('usr', req.session.cookie., req.session.cookie.data);
+                // todo: check if express-session don't have build in functionality to send cookie
+                res.cookie(req.session.cookie.name, req.sessionID, req.session.cookie.data);
                 res.send(true);
             });
 
 
         } else if (rows[0].answer === '0') {
-            res.send(JSON.stringify(false));
+            res.send(false);
         } else {
             // todo: add function to log events like this
         }
-        //
-        // if (rows[0].answer === '1') {
-        //     let expires = 1000 * 60 * 15; // 15 minutes
-        //     let token = jwt.encode({
-        //         iss: req.body.name,
-        //         exp: moment().add(1, 'days').valueOf()
-        //     }, req.app.get('jwtTokenSecret'));
-        //
-        //     let options = {
-        //         maxAge: expires
-        //     };
-
-            // connection2.query('CALL saveSession("' + token + '", "' + req.body.name + '")');
-            // connection2.end();
-
-            // res.cookie('usr', token, options);
-            // res.send(true);
-
-        // } else if (rows[0].answer === '0') {
-        //     res.send(JSON.stringify(false));
-        // } else {
-        //    todo: add function to log events like this
-        // }
     });
 
     connection.end();

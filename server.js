@@ -42,7 +42,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        name: 'usr',
+        name: 'session',
         maxAge: 600000,
         secure: false,
         httpOnly: false
