@@ -25,24 +25,26 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-// app.use(cookieParser());
+app.use(cookieParser());
 
 // Session
 app.set('jwtTokenSecret', 'loki');
 
 app.use(session({
-    key: 'usr',
+    key: 'session',
     secret: 'loki',
     store: new MySQLStore({
         host: 'j2node.com',
         user: 'jnodecom_j2',
         password: 'j2nodecom',
-        database: 'jnodecom_db'
+        database: 'jnodecom_db',
+        schema: {
+            tableName: 'session_tab'
+        }
     }),
     resave: false,
     saveUninitialized: false,
     cookie: {
-        name: 'session',
         maxAge: 600000,
         secure: false,
         httpOnly: false
@@ -56,6 +58,16 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+app.use(function(req, res, next) {
+
+    if(req.session.userName) {
+        console.log(req.sessionID);
+    } else {
+        console.log('no session')
+    }
     next();
 });
 

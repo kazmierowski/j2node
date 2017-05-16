@@ -53,10 +53,9 @@ router.post('/auth', (req, res) => {
         if (e) throw e;
 
         else if (rows[0].answer === '1') {
-            console.log(req.session);
+            req.session.userName = req.body.name;
             req.session.save(function() {
-                // todo: check if express-session don't have build in functionality to send cookie
-                res.cookie(req.session.cookie.name, req.sessionID, req.session.cookie.data);
+
                 res.send(true);
             });
 
