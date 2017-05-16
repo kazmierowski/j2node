@@ -20,13 +20,14 @@ const app = express();
 
 // Parsers for POST data
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cookieParser());
 
-// Session
+/**
+ * Session management
+ */
 app.set('jwtTokenSecret', 'loki');
 
 app.use(session({
@@ -66,10 +67,10 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
 
     /** we need to check something here that we are setting on login (f.e. email) **/
-    if(req.session.userEmail !== undefined) {
+    if (req.session.userEmail !== undefined) {
         next();
     } else {
         req.url === '/login' || req.url === '/user/auth' ? next() : res.redirect('/login');
