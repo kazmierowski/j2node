@@ -47,7 +47,6 @@ router.get('/deleteUserType/:id', (req, res) => {
 
 router.post('/auth', (req, res) => {
     let connection = connect.createConnection();
-    let connection2 = connect.createConnection();
 
     connection.query("select checkUser('" + req.body.name + "','" + req.body.pass + "') as answer", function (e, rows, fields) {
         if (e) throw e;

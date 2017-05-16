@@ -15,7 +15,6 @@ const MySQLStore = require('express-mysql-session')(session);
 const api = require('./server/routes/api');
 const user = require('./server/routes/user');
 const ticket = require('./server/routes/ticket');
-// const session = require('./server/db/db_session');
 
 const app = express();
 
@@ -33,6 +32,7 @@ app.set('jwtTokenSecret', 'loki');
 app.use(session({
     key: 'session',
     secret: 'loki',
+    rolling: true,
     store: new MySQLStore({
         host: 'j2node.com',
         user: 'jnodecom_j2',
@@ -45,7 +45,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 600000,
+        maxAge: 900000,
         secure: false,
         httpOnly: false
     }
@@ -63,12 +63,15 @@ app.use(function (req, res, next) {
 
 app.use(function(req, res, next) {
 
-    if(req.session.userName) {
-        console.log(req.sessionID);
+    console.log(req.session.userName);
+    console.log(req.url);
+
+    // we need to check something here that we are setting on login
+    if(req.session.userName !== undefined) {
+        next();
     } else {
-        console.log('no session')
+        req.url === '/login' || req.url === '/user/auth' ? next() : res.redirect('/login');
     }
-    next();
 });
 
 // app.use(function (req, res, next) {
