@@ -11,6 +11,7 @@ const jwt = require('jwt-simple');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
+const userService = require('./server/db/user');
 
 const api = require('./server/routes/api');
 const user = require('./server/routes/user');
@@ -71,7 +72,14 @@ app.use(function (req, res, next) {
 
     /** we need to check something here that we are setting on login (f.e. email) **/
     if (req.session.userEmail !== undefined) {
-        next();
+        userService.getUserSessionId(req.session.userEmail, function(serverSession) {
+            if(req.sessionID === serverSession) {
+                console.log('session checked: TRUE');
+                next();
+            } else {
+                console.log('session checked: FALSE');
+            }
+        });
     } else {
         req.url === '/login' || req.url === '/user/auth' ? next() : res.redirect('/login');
     }

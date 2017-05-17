@@ -26,5 +26,16 @@ let saveSessionId = (sessionId, userId) => {
     connection.end();
 };
 
+let getUserSessionId = (userEmail, callback) => {
+    let connection = connect.createConnection();
+
+    connection.query('SELECT getUserSessionId("' + userEmail + '") AS sessionId', function(e, rows, field) {
+        callback(rows[0].sessionId);
+    });
+
+    connection.end();
+};
+
 exports.getToken = getToken;
 exports.saveSessionId = saveSessionId;
+exports.getUserSessionId = getUserSessionId;
