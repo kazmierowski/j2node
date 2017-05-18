@@ -8,16 +8,15 @@ import { Router } from '@angular/router';
   providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
-  public username: string;
+  public useremail: string;
   public userpass: string;
   public communicat: string;
   constructor(private loginService: LoginService, private router: Router) {}
   public login() {
-      this.loginService.login(this.username, this.userpass).subscribe(
+      this.loginService.login(this.useremail, this.userpass).subscribe(
         (res) => {
-            const temp = res[0].answer;
-            if (temp == 1) {
-                localStorage.setItem('zalogowany', 'true');
+            console.log(res);
+            if (res === true) {
                 this.router.navigate(['/board']);
             }
         }

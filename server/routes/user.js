@@ -5,8 +5,13 @@
 "use strict";
 
 const express = require('express');
-const connect = require('./../db/db_connect');
 const router = express.Router();
+const jwt = require('jwt-simple');
+const moment = require('moment');
+const session = require('express-session');
+
+const user = require('./../db/user');
+const connect = require('./../db/db_connect');
 
 router.get('/allUsers', (req, res) => {
 
@@ -45,9 +50,23 @@ router.get('/deleteUserType/:id', (req, res) => {
 router.post('/auth', (req, res) => {
     let connection = connect.createConnection();
 
-    connection.query("select checkUser('"+ req.body.name +"','"+ req.body.pass +"') as answer", function(e, rows, fields) {
+    connection.query("select checkUser('" + req.body.email + "','" + req.body.pass + "') as userId", function (e, rows, fields) {
         if (e) throw e;
-        res.send(JSON.stringify(rows));
+
+        else if (rows[0].userId !== '0') {
+            req.session.userEmail = req.body.email;
+            req.session.save(function () {
+
+                res.send(true);
+
+                user.saveSessionId(req.sessionID, rows[0].userId);
+            });
+
+        } else if (rows[0].userId === '0') {
+            res.send(false);
+        } else {
+            // todo: add function to log events like this
+        }
     });
 
     connection.end();
