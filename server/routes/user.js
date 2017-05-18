@@ -51,18 +51,19 @@ router.post('/auth', (req, res) => {
     let connection = connect.createConnection();
 
     connection.query("select checkUser('" + req.body.email + "','" + req.body.pass + "') as userId", function (e, rows, fields) {
+
         if (e) throw e;
 
-        else if (rows[0].userId !== '0') {
+        else if (rows[0].userId !== 0) {
             req.session.userEmail = req.body.email;
             req.session.save(function () {
 
-                res.send(true);
-
-                user.saveSessionId(req.sessionID, rows[0].userId);
+                user.saveSessionId(req.sessionID, rows[0].userId, function() {
+                    res.send(true);
+                });
             });
 
-        } else if (rows[0].userId === '0') {
+        } else if (rows[0].userId === 0) {
             res.send(false);
         } else {
             // todo: add function to log events like this

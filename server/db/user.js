@@ -18,12 +18,14 @@ let getToken = (userLogin, callback) => {
     connection.end();
 };
 
-let saveSessionId = (sessionId, userId) => {
+let saveSessionId = (sessionId, userId, callback) => {
     let connection = connect.createConnection();
 
     connection.query('CALL saveSessionId("' + sessionId + '", "' + userId + '")');
 
     connection.end();
+
+    callback();
 };
 
 let getUserSessionId = (userEmail, callback) => {
