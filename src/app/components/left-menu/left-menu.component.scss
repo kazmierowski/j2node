@@ -6,6 +6,7 @@
   top: $header-height;
   margin: $header-padding-vertical*2 0;
   color: $color-text-light;
+  z-index: 9999999;
 
   width: $left-menu-width;
   height: 100%;
