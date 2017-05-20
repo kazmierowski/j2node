@@ -2,6 +2,11 @@
 
 **Angular 4** on the front-end and **nodeJS** on the back-end.
 
+## Installation
+
+clone the repo to your computer and run `npm install`
+next install the Angular Cli with `npm install -g @angular/cli` so you can run the `ng` commands
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
