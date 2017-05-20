@@ -8,6 +8,7 @@
   width: 100%;
   padding: $header-padding-vertical $header-padding-horizontal;
   background-color: $color-main;
+  z-index: 9999999;
 
   height: $header-height;
   border-bottom: $border-main-thickness solid $color-accent;
