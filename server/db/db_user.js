@@ -38,6 +38,12 @@ let getUserSessionId = (userEmail, callback) => {
     connection.end();
 };
 
+let getUserProjects = (userId, callback) => {
+    let connection = connect.createConnection();
+
+    connection.query('SELECT')
+};
+
 exports.getToken = getToken;
 exports.saveSessionId = saveSessionId;
 exports.getUserSessionId = getUserSessionId;

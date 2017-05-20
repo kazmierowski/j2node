@@ -11,7 +11,7 @@ const jwt = require('jwt-simple');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-const userService = require('./server/db/user');
+const userService = require('./server/db/db_user');
 
 const api = require('./server/routes/api');
 const user = require('./server/routes/user');
@@ -78,6 +78,8 @@ app.use(function (req, res, next) {
                 next();
             } else {
                 console.log('session checked: FALSE');
+                // console.log(serverSession);
+                // console.log(req.sessionID);
             }
         });
     } else {

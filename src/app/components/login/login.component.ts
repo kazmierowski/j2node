@@ -15,8 +15,7 @@ export class LoginComponent implements OnInit {
   public login() {
       this.loginService.login(this.useremail, this.userpass).subscribe(
         (res) => {
-            console.log(res);
-            if (res === true) {
+            if (res !== false) {
                 this.router.navigate(['/board']);
             }
         }

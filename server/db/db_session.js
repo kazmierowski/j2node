@@ -8,7 +8,7 @@ const server = require('./../../server');
 const router = express.Router();
 const jwt = require('jwt-simple');
 const moment = require('moment');
-const userService = require('./user');
+const userService = require('./db_user');
 
 let saveSession = (token, userLogin) => {
     let connection = connect.createConnection();
