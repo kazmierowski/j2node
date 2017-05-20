@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) {}
   
   public login() {
+    
       var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
       if (this.useremail != "" && (this.useremail.length <= 5 || !EMAIL_REGEXP.test(this.useremail))) {
             this.communicat = 'Incorrect email format!';
@@ -21,12 +22,12 @@ export class LoginComponent implements OnInit {
           this.communicat = 'Fill both fields!';
         } else {
           this.loginService.login(this.useremail, this.userpass).subscribe(
-            (res) => {
-                if (res === true) {
-                    this.router.navigate(['/board']);
-                } else {
-                  this.communicat = 'Incorrect password or login!';
-                }
+        (res) => {
+            if (res !== false) {
+                this.router.navigate(['/board']);
+            } else {
+                this.communicat = 'Incorrect password or login!';
+            }
             }
           );
         }

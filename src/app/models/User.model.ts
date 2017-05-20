@@ -1,0 +1,35 @@
+/**
+ * Created by kamil on 20/05/17.
+ */
+
+export class User {
+
+    // user table variables
+    private _id: number;
+    private _firstName: string;
+    private _lastName: string;
+    private _email: string;
+    private _phone: string;
+    private _country: string;
+    private city: string;
+    private _street: string;
+
+    // user view variables
+
+    private _userProjects: Array<number>; // change to Project type
+    private _userBoards: Array<number>; // change to Board type
+
+
+    constructor(id: number, firstName: string, lastName: string, email: string, phone: string, country: string, city: string, street: string, userProjects: Array<number>, userBoards: Array<number>) {
+        this._id = id;
+        this._firstName = firstName;
+        this._lastName = lastName;
+        this._email = email;
+        this._phone = phone;
+        this._country = country;
+        this.city = city;
+        this._street = street;
+        this._userProjects = userProjects;
+        this._userBoards = userBoards;
+    }
+}
