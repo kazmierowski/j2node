@@ -56,6 +56,7 @@ router.post('/auth', (req, res) => {
 
         else if (rows[0][0].user_id !== 0) {
             req.session.userEmail = req.body.email;
+            req.session.userId = req.body.email;
             req.session.save(function () {
 
                 user.saveSessionId(req.sessionID, rows[0][0].user_id, function() {
@@ -69,6 +70,21 @@ router.post('/auth', (req, res) => {
             // todo: add function to log events like this
         }
     });
+
+    connection.end();
+});
+
+router.get('/userProjectsInfo/:userId', (req, res) => {
+    let connection = connect.createConnection();
+
+    connection.query('SELECT project_id, project_name FROM userToProject_mix' +
+        'JOIN project_tab ON project_id = userToProject_projectId AND userToProject_userId = ' + req.param.userId + ' AS userProjects',
+        function(e, rows, fields) {
+            if(e) {return}
+            else {
+                callback(rows[0].userProjects);
+            }
+        });
 
     connection.end();
 });

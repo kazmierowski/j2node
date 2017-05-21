@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from './login.service';
 import {Router} from '@angular/router';
+import {User} from "../../models/User.model";
+import {GlobalVariableService} from "../../global-variable.service";
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -12,7 +15,7 @@ export class LoginComponent implements OnInit {
     public userpass: string;
     public communicat: string;
 
-    constructor(private loginService: LoginService, private router: Router) {
+    constructor(private loginService: LoginService, private router: Router, private globalVariable: GlobalVariableService) {
     }
 
     public login() {
@@ -27,6 +30,21 @@ export class LoginComponent implements OnInit {
             this.loginService.login(this.useremail, this.userpass).subscribe(
                 (res) => {
                     if (res !== false) {
+                        this.globalVariable.setGlobalUser(
+                            new User(
+                                res[0]['user_id'],
+                                res[0]['user_firstName'],
+                                res[0]['user_lastName'],
+                                res[0]['user_email'],
+                                res[0]['user_phone'],
+                                res[0]['user_country'],
+                                res[0]['user_city'],
+                                res[0]['user_street'],
+                                res[0]['userProjects'],
+                                res[0]['userBoards']
+                            )
+                        );
+                        console.log(this.globalVariable.getGlobalUser());
                         this.router.navigate(['/board']);
                     } else {
                         this.communicat = 'Incorrect password or login!';

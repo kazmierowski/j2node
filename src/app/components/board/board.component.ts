@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BoardColumnService} from "./board-column/board-column.service";
 import {Column} from "../../models/Column.model";
+import {GlobalVariableService} from "../../global-variable.service";
 
 @Component({
   selector: 'app-board',

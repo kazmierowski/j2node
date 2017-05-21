@@ -15,6 +15,7 @@ import { BoardColumnComponent } from './components/board/board-column/column.com
 import { BackgroundColorDirective } from './directives/background-color.directive';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth.guard';
+import {GlobalVariableService} from "./global-variable.service";
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], children: [
@@ -43,7 +44,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, GlobalVariableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

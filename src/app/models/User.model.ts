@@ -11,7 +11,7 @@ export class User {
     private _email: string;
     private _phone: string;
     private _country: string;
-    private city: string;
+    private _city: string;
     private _street: string;
 
     // user view variables
@@ -27,7 +27,7 @@ export class User {
         this._email = email;
         this._phone = phone;
         this._country = country;
-        this.city = city;
+        this._city = city;
         this._street = street;
         this._userProjects = userProjects;
         this._userBoards = userBoards;
