@@ -77,12 +77,12 @@ router.post('/auth', (req, res) => {
 router.get('/userProjectsInfo/:userId', (req, res) => {
     let connection = connect.createConnection();
 
-    connection.query('SELECT project_id, project_name FROM userToProject_mix' +
-        'JOIN project_tab ON project_id = userToProject_projectId AND userToProject_userId = ' + req.param.userId + ' AS userProjects',
+    connection.query('SELECT project_id, project_name FROM userToProject_mix ' +
+        'JOIN project_tab ON project_id = userToProject_projectId AND userToProject_userId = "' + req.params.userId + '"',
         function(e, rows, fields) {
             if(e) {return}
             else {
-                callback(rows[0].userProjects);
+                res.send(rows);
             }
         });
 
@@ -92,7 +92,8 @@ router.get('/userProjectsInfo/:userId', (req, res) => {
 router.get('/userFrontendData/:userId', (req, res) => {
     let connection = connect.createConnection();
 
-    connection.query('CALL getUserFrontend(2)',
+
+    connection.query('CALL getUserFrontend("' + req.params.userId + '")',
         function(e, rows, fields) {
             if(e) {return}
             else {

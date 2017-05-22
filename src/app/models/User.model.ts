@@ -16,8 +16,8 @@ export class User {
 
     // user view variables
 
-    private _userProjects: Array<number>; // change to Project type
-    private _userBoards: Array<number>; // change to Board type
+    private _userProjects: object; // change to Project type
+    private _userBoards: object; // change to Board type
 
 
     constructor(id: number, firstName: string, lastName: string, email: string, phone: string, country: string, city: string, street: string, userProjects: Array<number>, userBoards: Array<number>) {
@@ -31,5 +31,13 @@ export class User {
         this._street = street;
         this._userProjects = userProjects;
         this._userBoards = userBoards;
+    }
+
+    public getUserProjects() {
+        return this._userProjects;
+    }
+
+    public setUserProjects(userProjects) {
+        this._userProjects = userProjects;
     }
 }
