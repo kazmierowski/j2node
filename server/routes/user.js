@@ -89,4 +89,18 @@ router.get('/userProjectsInfo/:userId', (req, res) => {
     connection.end();
 });
 
+router.get('/userFrontendData/:userId', (req, res) => {
+    let connection = connect.createConnection();
+
+    connection.query('CALL getUserFrontend(2)',
+        function(e, rows, fields) {
+            if(e) {return}
+            else {
+                res.send(rows[0][0]);
+            }
+        });
+
+    connection.end();
+});
+
 module.exports = router;

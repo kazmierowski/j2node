@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
                                 res[0]['userBoards']
                             )
                         );
-                        console.log(this.globalVariable.getGlobalUser());
                         this.router.navigate(['/board']);
                     } else {
                         this.communicat = 'Incorrect password or login!';

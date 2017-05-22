@@ -14,11 +14,12 @@ import { BoardTicketComponent } from './components/board/board-ticket/board-tick
 import { BoardColumnComponent } from './components/board/board-column/column.component';
 import { BackgroundColorDirective } from './directives/background-color.directive';
 import { LoginComponent } from './components/login/login.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import {GlobalVariableService} from "./global-variable.service";
+import {VariableResolver} from "./guards/variable.resolver";
 
 const appRoutes: Routes = [
-        { path: '', canActivate: [AuthGuard], children: [
+        { path: '', canActivate: [AuthGuard], resolve:{globalVariables: VariableResolver}, children: [
             { path: '', redirectTo: 'j2node', pathMatch: 'full'},
             { path: 'j2node', component: LandingPageComponent },
             { path: 'board', component: BoardComponent }
@@ -44,7 +45,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [AuthGuard, GlobalVariableService],
+  providers: [AuthGuard, GlobalVariableService, VariableResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
