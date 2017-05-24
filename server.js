@@ -54,7 +54,8 @@ app.use(session({
     cookie: {
         maxAge: 900000,
         secure: false,
-        httpOnly: false
+        httpOnly: false,
+        domain: 'http://test.j2node.com:4200'
     }
 }));
 
@@ -62,14 +63,19 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // todo: CORS domain - to be removed on live
+
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Content-Type, withCredentials, set-cookie");
+    res.header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT");
+    res.header("Access-Control-Allow-Credentials", "true");
+    // res.header("withCredentials", "true");
+    // res.header("Content-Type", "text/plain");
     next();
 });
-
 app.use(function (req, res, next) {
 
+    // console.log(req.session);
     /** we need to check something here that we are setting on login (f.e. email) **/
     if (req.session.userEmail !== undefined) {
         userService.getUserSessionId(req.session.userEmail, function(serverSession) {
@@ -83,7 +89,9 @@ app.use(function (req, res, next) {
             }
         });
     } else {
-        req.url === '/login' || req.url === '/user/auth' ? next() : res.redirect('/login');
+        next();
+        console.log(req.url);
+        // req.url === '/login' || req.url === '/user/auth' || req.url === '/auth' ? next() : res.redirect('/login');
     }
 });
 
@@ -93,8 +101,10 @@ app.use('/user', user);
 app.use('/ticket', ticket);
 
 // Catch all other routes and return the index file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
+app.get('*', (req, res, next) => {
+    // res.redirect('http://localhost:4200/index.html');
+    // res.sendFile(path.join(__dirname, 'dist/index.html'));
+    // next();
 });
 
 /**

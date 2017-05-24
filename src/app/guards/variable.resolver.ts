@@ -12,6 +12,8 @@ export class VariableResolver implements Resolve<any> {
     resolve(next: ActivatedRouteSnapshot,
             state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
 
+        console.log('resolver');
+
         if(this.globalVariables.getGlobalUser() === undefined) {
             return this.globalVariables.fetchGlobalUser(2);
         }

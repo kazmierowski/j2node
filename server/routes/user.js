@@ -48,6 +48,9 @@ router.get('/deleteUserType/:id', (req, res) => {
 });
 
 router.post('/auth', (req, res) => {
+    // console.log(req);
+    console.log(req.body);
+    // console.log(req);
     let connection = connect.createConnection();
 
     connection.query("CALL checkUser('" + req.body.email + "','" + req.body.pass + "')", function (e, rows, fields) {
@@ -55,11 +58,13 @@ router.post('/auth', (req, res) => {
         if (e) throw e;
 
         else if (rows[0][0].user_id !== 0) {
+            console.log('saving session');
             req.session.userEmail = req.body.email;
             req.session.userId = req.body.email;
             req.session.save(function () {
 
                 user.saveSessionId(req.sessionID, rows[0][0].user_id, function() {
+                    console.log(req.session);
                     res.send(rows[0]);
                 });
             });

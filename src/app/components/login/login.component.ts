@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
         } else {
             this.loginService.login(this.useremail, this.userpass).subscribe(
                 (res) => {
+                    console.log(res);
                     if (res !== false) {
                         this.globalVariable.setGlobalUser(
                             new User(
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
                                 res[0]['userBoards']
                             )
                         );
+                        console.log('navigate to board');
                         this.router.navigate(['/board']);
                     } else {
                         this.communicat = 'Incorrect password or login!';

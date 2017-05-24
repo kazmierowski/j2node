@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import {Http, Response} from "@angular/http";
 import 'rxjs/add/operator/map';
-import {serverBaseUrl} from '../../../app.variables';
 import {Ticket} from "../../../models/Ticket.model";
+import {GlobalVariableService} from "../../../global-variable.service";
 
 @Injectable()
 export class BoardTicketService {
 
-  private allTicketsUrl: string = 'ticket/allTickets';
+  constructor(private http: Http, private globalVariables: GlobalVariableService) { }
+
+  private allTicketsUrl: string = this.globalVariables.getServerDomain() + '/ticket/allTickets';
   private addTicketUrl: string = 'ticket/addTicket';
 
-  constructor(private http: Http) { }
-
     public getAllTickets(columnName: string) {
-      return this.http.get(this.allTicketsUrl)
+      let header = new Headers({'withCredentials': 'true'});
+      return this.http.get(this.allTicketsUrl, header)
           .map((res: Response) =>  res.json());
     }
 

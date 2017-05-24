@@ -2,19 +2,24 @@ import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs';
+import {GlobalVariableService} from "../../global-variable.service";
 
 @Injectable()
 export class LoginService {
-    loginURL = '/user/auth';
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private globalVariables: GlobalVariableService) {
     }
+
+    loginURL = this.globalVariables.getServerDomain() + '/user/auth';
 
     public login(useremail: string, userpass: string) {
         const user = {pass: '', email: ''};
         user.pass = userpass;
         user.email = useremail;
-        const headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
+        const headers = new Headers();// ... Set content type to JSON
+        headers.append('Content-Type', 'application/json');
+        headers.append('withCredentials', 'true');
+        // headers.append('set-cookie', 'true');
         const options = new RequestOptions({headers: headers}); // Create a request option
 
         return this.http.post(this.loginURL, user, options) // ...using post request

@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 export class GlobalVariableService {
 
     private globalUser: User;
+    private serverDomain = 'http://test.j2node.com:5000';
 
     constructor(private http: Http) {
     }
@@ -22,7 +23,8 @@ export class GlobalVariableService {
 
     public fetchGlobalUser(userId) {
         let that = this;
-        return this.http.get('/user/userFrontendData/' + userId)
+        let header = new Headers({'withCredentials': 'true'});
+        return this.http.get(this.serverDomain + '/user/userFrontendData/' + userId, header)
             .map((res: Response) => res.json())
             .do((res) => {
                 this.setGlobalUser(
@@ -40,7 +42,7 @@ export class GlobalVariableService {
                     )
                 );
 
-                that.http.get('/user/userProjectsInfo/' + userId)
+                that.http.get(this.serverDomain + '/user/userProjectsInfo/' + userId, header)
                     .map((res: Response) => res.json())
                     .subscribe(
                         (res) => {
@@ -50,5 +52,9 @@ export class GlobalVariableService {
 
             //    todo: boards fetch
             })
+    }
+
+    public getServerDomain() {
+        return this.serverDomain;
     }
 }
