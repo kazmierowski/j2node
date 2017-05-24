@@ -16,16 +16,18 @@ import { BackgroundColorDirective } from './directives/background-color.directiv
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import {GlobalVariableService} from "./global-variable.service";
-import {VariableResolver} from "./guards/variable.resolver";
+import {VariableResolver} from "./resolvers/variable.resolver";
 import { UserDashboardComponent } from './components/dashboards/user-dashboard/user-dashboard.component';
 import { ProjectsListComponent } from './components/dashboards/projects-list/projects-list.component';
+import { ProjectDashboardComponent } from './components/dashboards/project-dashboard/project-dashboard.component';
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve:{globalVariables: VariableResolver}, children: [
             { path: '', redirectTo: 'j2node', pathMatch: 'full'},
             { path: 'j2node', component: LandingPageComponent },
             { path: 'board', component: BoardComponent },
-            { path: 'user-dashboard', component: UserDashboardComponent }
+            { path: 'user-dashboard', component: UserDashboardComponent },
+            { path: 'project/:id', component: ProjectDashboardComponent }
         ]}, { path: 'login', canActivate: [AuthGuard], component: LoginComponent}
 ];
 
@@ -42,7 +44,8 @@ const appRoutes: Routes = [
     BackgroundColorDirective,
     LoginComponent,
     UserDashboardComponent,
-    ProjectsListComponent
+    ProjectsListComponent,
+    ProjectDashboardComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

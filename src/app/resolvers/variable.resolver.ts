@@ -17,14 +17,6 @@ export class VariableResolver implements Resolve<any> {
 
         if(this.globalVariables.getGlobalUser() === undefined) {
             return this.globalVariables.fetchGlobalUser();
-
-            // return this.globalVariables.fetchGlobalUser(loginId ? loginId )
-            //
-            // if(loginId === undefined) {
-            //
-            // } else if(isNumber(loginId)) {
-            //     return this.globalVariables.fetchGlobalUser(loginId);
-            // }
         }
     }
 }
