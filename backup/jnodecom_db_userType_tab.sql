@@ -1,0 +1,1 @@
+INSERT INTO jnodecom_db.userType_tab (userType_name) VALUES ('unassigned');

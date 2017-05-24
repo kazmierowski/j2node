@@ -17,12 +17,15 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import {GlobalVariableService} from "./global-variable.service";
 import {VariableResolver} from "./guards/variable.resolver";
+import { UserDashboardComponent } from './components/dashboards/user-dashboard/user-dashboard.component';
+import { ProjectsListComponent } from './components/dashboards/projects-list/projects-list.component';
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve:{globalVariables: VariableResolver}, children: [
             { path: '', redirectTo: 'j2node', pathMatch: 'full'},
             { path: 'j2node', component: LandingPageComponent },
-            { path: 'board', component: BoardComponent }
+            { path: 'board', component: BoardComponent },
+            { path: 'user-dashboard', component: UserDashboardComponent }
         ]}, { path: 'login', canActivate: [AuthGuard], component: LoginComponent}
 ];
 
@@ -37,7 +40,9 @@ const appRoutes: Routes = [
     BoardTicketComponent,
     BoardColumnComponent,
     BackgroundColorDirective,
-    LoginComponent
+    LoginComponent,
+    UserDashboardComponent,
+    ProjectsListComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

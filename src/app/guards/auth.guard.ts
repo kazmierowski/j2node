@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
                 state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         if (document.cookie.indexOf('session=') !== -1) {
             if (state.url === '/login') {
-                this.router.navigate(['/board']);
+                this.router.navigate(['/user-dashboard']);
             } else {
                 return true;
             }
