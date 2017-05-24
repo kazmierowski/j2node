@@ -30,20 +30,6 @@ export class LoginComponent implements OnInit {
             this.loginService.login(this.useremail, this.userpass).subscribe(
                 (res) => {
                     if (res !== false) {
-                        this.globalVariable.setGlobalUser(
-                            new User(
-                                res[0]['user_id'],
-                                res[0]['user_firstName'],
-                                res[0]['user_lastName'],
-                                res[0]['user_email'],
-                                res[0]['user_phone'],
-                                res[0]['user_country'],
-                                res[0]['user_city'],
-                                res[0]['user_street'],
-                                res[0]['userProjects'],
-                                res[0]['userBoards']
-                            )
-                        );
                         this.router.navigate(['/user-dashboard']);
                     } else {
                         this.communicat = 'Incorrect password or login!';

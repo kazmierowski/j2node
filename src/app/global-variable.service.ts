@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {User} from "./models/User.model";
-import {Http, Headers, RequestOptions, Response} from '@angular/http';
+import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Observable} from 'rxjs';
+
 
 @Injectable()
 export class GlobalVariableService {
 
     private globalUser: User;
+    private loginUserId: number;
 
     constructor(private http: Http) {
     }
@@ -16,16 +17,24 @@ export class GlobalVariableService {
         this.globalUser = user;
     }
 
-    public getGlobalUser() {
+    public getGlobalUser(): User {
         return this.globalUser;
     }
 
-    public fetchGlobalUser(userId) {
+    public setLoginUserId(userId: number) {
+        this.loginUserId = userId;
+    }
+
+    public getLoginUserId(): number {
+        return this.loginUserId;
+    }
+
+    public fetchGlobalUser() {
         let that = this;
-        return this.http.get('/user/userFrontendData/' + userId)
+
+        return this.http.get('/user/userFrontendData')
           .map((res: Response) => res.json())
           .do((res) => {
-              console.log('fetch first do');
               this.setGlobalUser(
                 new User(
                   res['user_id'],
@@ -42,11 +51,10 @@ export class GlobalVariableService {
               )
           })
           .concat(
-            that.http.get('/user/userProjectsInfo/' + userId)
+            that.http.get('/user/userProjectsInfo')
               .map((res: Response) => res.json())
               .do(
                 (res) => {
-                    console.log('fetching');
                     this.getGlobalUser().setUserProjects(res);
                 }
               )

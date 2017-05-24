@@ -56,7 +56,7 @@ router.post('/auth', (req, res) => {
 
         else if (rows[0][0].user_id !== 0) {
             req.session.userEmail = req.body.email;
-            req.session.userId = req.body.email;
+            req.session.userId = rows[0][0].user_id;
             req.session.save(function () {
 
                 user.saveSessionId(req.sessionID, rows[0][0].user_id, function() {
@@ -74,11 +74,11 @@ router.post('/auth', (req, res) => {
     connection.end();
 });
 
-router.get('/userProjectsInfo/:userId', (req, res) => {
+router.get('/userProjectsInfo', (req, res) => {
     let connection = connect.createConnection();
 
     connection.query('SELECT project_id, project_name FROM userToProject_mix ' +
-        'JOIN project_tab ON project_id = userToProject_projectId AND userToProject_userId = "' + req.params.userId + '"',
+        'JOIN project_tab ON project_id = userToProject_projectId AND userToProject_userId = "2"',
         function(e, rows, fields) {
             if(e) {return}
             else {
@@ -89,11 +89,11 @@ router.get('/userProjectsInfo/:userId', (req, res) => {
     connection.end();
 });
 
-router.get('/userFrontendData/:userId', (req, res) => {
+router.get('/userFrontendData', (req, res) => {
     let connection = connect.createConnection();
 
 
-    connection.query('CALL getUserFrontend("' + req.params.userId + '")',
+    connection.query('CALL getUserFrontend("2")',
         function(e, rows, fields) {
             if(e) {return}
             else {

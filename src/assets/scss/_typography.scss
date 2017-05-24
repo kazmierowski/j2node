@@ -1,16 +1,24 @@
+h1, h2, h3, h4 {
+  color: $color-main;
+
+  &.underline {
+    border-bottom: 1px solid $color-main-light;
+    margin-bottom: 20px;
+  }
+  &.title {
+
+  }
+}
+
 h1 {
 
 }
 
 h2 {
+  line-height: 30px;
   font-size: 25px;
   font-weight: bold;
   margin: 5px 0 5px 0;
-
-  &.border {
-    color: $color-main;
-    border-bottom: 1px solid $color-main-light;
-  }
 }
 
 h3 {
