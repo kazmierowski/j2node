@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {User} from "./models/User.model";
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
+import {Project} from "./models/Project.model";
 
 
 @Injectable()
 export class GlobalVariableService {
 
     private globalUser: User;
-    private loginUserId: number;
+    private globalUserProjects = [];
 
     constructor(private http: Http) {
     }
@@ -21,43 +22,46 @@ export class GlobalVariableService {
         return this.globalUser;
     }
 
-    public setLoginUserId(userId: number) {
-        this.loginUserId = userId;
+    public setGlobalUserProjects(projects) {
+        this.globalUserProjects = projects;
     }
 
-    public getLoginUserId(): number {
-        return this.loginUserId;
+    public getGlobalUserProjects() {
+        return this.globalUserProjects;
     }
 
     public fetchGlobalUser() {
-        let that = this;
+        return this.getUserFrontend().concat(this.getUserProjects())
+    }
 
+    public getUserFrontend() {
         return this.http.get('/user/userFrontendData')
-          .map((res: Response) => res.json())
-          .do((res) => {
-              this.setGlobalUser(
-                new User(
-                  res['user_id'],
-                  res['user_firstName'],
-                  res['user_lastName'],
-                  res['user_email'],
-                  res['user_phone'],
-                  res['user_country'],
-                  res['user_city'],
-                  res['user_street'],
-                  res['userProjects'],
-                  res['userBoards']
+            .map((res: Response) => res.json())
+            .do((res) => {
+                this.setGlobalUser(
+                    new User(
+                        res['user_id'],
+                        res['user_firstName'],
+                        res['user_lastName'],
+                        res['user_email'],
+                        res['user_phone'],
+                        res['user_country'],
+                        res['user_city'],
+                        res['user_street'],
+                        res['userProjects'],
+                        res['userBoards']
+                    )
                 )
-              )
-          })
-          .concat(
-            that.http.get('/user/userProjectsInfo')
-              .map((res: Response) => res.json())
-              .do(
+            })
+    }
+
+    public getUserProjects() {
+       return this.http.get('/user/userProjectsInfo')
+            .map((res: Response) => res.json())
+            .do(
                 (res) => {
-                    this.getGlobalUser().setUserProjects(res);
+                    this.setGlobalUserProjects(res);
                 }
-              )
-          )
+            )
     }
 }

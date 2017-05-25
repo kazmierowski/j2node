@@ -13,8 +13,6 @@ export class VariableResolver implements Resolve<any> {
     resolve(next: ActivatedRouteSnapshot,
             state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
 
-        let loginId = this.globalVariables.getLoginUserId();
-
         if(this.globalVariables.getGlobalUser() === undefined) {
             return this.globalVariables.fetchGlobalUser();
         }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GlobalVariableService} from "../../../global-variable.service";
+import {ProjectDashboardService} from "../project-dashboard/project-dashboard.service";
 
 @Component({
   selector: 'app-user-dashboard',
@@ -15,7 +16,7 @@ export class UserDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.globalVariables.getGlobalUser();
-    this.projects = this.user.getUserProjects();
+    this.projects = this.globalVariables.getGlobalUserProjects();
   }
 
 }

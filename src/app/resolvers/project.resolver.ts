@@ -1,16 +1,15 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, RouterStateSnapshot, Resolve} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {GlobalVariableService} from "../global-variable.service";
-import {isNumber} from "util";
 import {Project} from "../models/Project.model";
+import {ProjectDashboardService} from "../components/dashboards/project-dashboard/project-dashboard.service";
 
 @Injectable()
 export class ProjectResolver implements Resolve<Project> {
-    constructor() {}
+    constructor(private projectDashboardService: ProjectDashboardService) {}
 
-    resolve(next: ActivatedRouteSnapshot,
+    resolve(route: ActivatedRouteSnapshot,
             state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-
+        return this.projectDashboardService.getProjectFrontend(+route.paramMap.get('projectId'))
     }
 }
