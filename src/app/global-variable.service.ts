@@ -10,6 +10,7 @@ export class GlobalVariableService {
 
     private globalUser: User;
     private globalUserProjects = [];
+    private globalUserBoards= [];
 
     constructor(private http: Http) {
     }
@@ -30,8 +31,18 @@ export class GlobalVariableService {
         return this.globalUserProjects;
     }
 
+    public setGlobalUserBoards(boards) {
+        this.globalUserBoards = boards;
+    }
+
+    public getGlobalUserBoards() {
+        return this.globalUserBoards;
+    }
+
     public fetchGlobalUser() {
-        return this.getUserFrontend().concat(this.getUserProjects())
+        return this.getUserFrontend()
+            .concat(this.getUserProjects()
+                .concat(this.getUserBoards()))
     }
 
     public getUserFrontend() {
@@ -61,6 +72,16 @@ export class GlobalVariableService {
             .do(
                 (res) => {
                     this.setGlobalUserProjects(res);
+                }
+            )
+    }
+
+    public getUserBoards() {
+        return this.http.get('/user/userBoardsInfo')
+            .map((res: Response) => res.json())
+            .do(
+                (res) => {
+                    this.setGlobalUserBoards(res);
                 }
             )
     }

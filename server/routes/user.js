@@ -78,7 +78,22 @@ router.get('/userProjectsInfo', (req, res) => {
     let connection = connect.createConnection();
 
     connection.query('SELECT project_id, project_name FROM userToProject_mix ' +
-        'JOIN project_tab ON project_id = userToProject_projectId AND userToProject_userId = "2"',
+        'JOIN project_tab ON project_id = userToProject_projectId AND userToProject_userId = "' + req.session.userId + '"',
+        function(e, rows, fields) {
+            if(e) {return}
+            else {
+                res.send(rows);
+            }
+        });
+
+    connection.end();
+});
+
+router.get('/userBoardsInfo', (req, res) => {
+    let connection = connect.createConnection();
+
+    connection.query('SELECT board_id, board_name FROM userToBoard_mix ' +
+        'JOIN board_tab ON board_id = userToBoard_boardId AND userToBoard_userId = "' + req.session.userId + '"',
         function(e, rows, fields) {
             if(e) {return}
             else {
