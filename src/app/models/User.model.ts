@@ -33,6 +33,10 @@ export class User {
         this._userBoards = userBoards;
     }
 
+    public getUserFirstName(): string {
+        return this._firstName;
+    }
+
     public getUserProjects() {
         return this._userProjects;
     }

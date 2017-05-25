@@ -16,6 +16,7 @@ const userService = require('./server/db/db_user');
 const api = require('./server/routes/api');
 const user = require('./server/routes/user');
 const ticket = require('./server/routes/ticket');
+const projects = require('./server/routes/project');
 
 const app = express();
 
@@ -91,6 +92,7 @@ app.use(function (req, res, next) {
 app.use('/api', api);
 app.use('/user', user);
 app.use('/ticket', ticket);
+app.use('/project', projects);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

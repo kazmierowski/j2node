@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
 import {User} from "./models/User.model";
-import {Http, Headers, RequestOptions, Response} from '@angular/http';
+import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Observable} from 'rxjs';
+import {Project} from "./models/Project.model";
+
 
 @Injectable()
 export class GlobalVariableService {
 
     private globalUser: User;
+    private globalUserProjects = [];
 
     constructor(private http: Http) {
     }
@@ -16,13 +18,24 @@ export class GlobalVariableService {
         this.globalUser = user;
     }
 
-    public getGlobalUser() {
+    public getGlobalUser(): User {
         return this.globalUser;
     }
 
-    public fetchGlobalUser(userId) {
-        let that = this;
-        return this.http.get('/user/userFrontendData/' + userId)
+    public setGlobalUserProjects(projects) {
+        this.globalUserProjects = projects;
+    }
+
+    public getGlobalUserProjects() {
+        return this.globalUserProjects;
+    }
+
+    public fetchGlobalUser() {
+        return this.getUserFrontend().concat(this.getUserProjects())
+    }
+
+    public getUserFrontend() {
+        return this.http.get('/user/userFrontendData')
             .map((res: Response) => res.json())
             .do((res) => {
                 this.setGlobalUser(
@@ -38,17 +51,17 @@ export class GlobalVariableService {
                         res['userProjects'],
                         res['userBoards']
                     )
-                );
-
-                that.http.get('/user/userProjectsInfo/' + userId)
-                    .map((res: Response) => res.json())
-                    .subscribe(
-                        (res) => {
-                            this.globalUser.setUserProjects(res)
-                        }
-                    )
-
-            //    todo: boards fetch
+                )
             })
+    }
+
+    public getUserProjects() {
+       return this.http.get('/user/userProjectsInfo')
+            .map((res: Response) => res.json())
+            .do(
+                (res) => {
+                    this.setGlobalUserProjects(res);
+                }
+            )
     }
 }
