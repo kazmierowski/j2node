@@ -9,17 +9,37 @@ export class Project {
     private _name: string;
 
     private _admin: number; // for now amin user id
-    private _boardsList: Array<Board>;
+
+    private _fullFetch = false;
+    private _boardsList: Array<number>;
     private _usersList: Array<number>; // list of user ids
     private _statusesList: Array<number>; // statuses ids
 
 
-    constructor(id: number, name: string, admin: number, boardsList: Array<Board>, usersList: Array<number>, statusesList: Array<number>) {
+    constructor(id: number, name: string, admin: number, fullFetch?: boolean, boardsList?: Array<number>/*, boardsList: Array<Board>, usersList: Array<number>, statusesList: Array<number>*/) {
         this._id = id;
         this._name = name;
         this._admin = admin;
+        this._fullFetch = fullFetch;
+        this._boardsList = boardsList || [];
+        // this._boardsList = boardsList;
+        // this._usersList = usersList;
+        // this._statusesList = statusesList;
+    }
+
+    public getName() {
+        return this._name;
+    }
+
+    public getId() {
+        return this._id;
+    }
+
+    public setBoardsList(boardsList: Array<number>) {
         this._boardsList = boardsList;
-        this._usersList = usersList;
-        this._statusesList = statusesList;
+    }
+
+    public getBoardsList(): Array<number> {
+        return this._boardsList;
     }
 }

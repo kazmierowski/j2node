@@ -10,6 +10,6 @@ export class ProjectResolver implements Resolve<Project> {
 
     resolve(route: ActivatedRouteSnapshot,
             state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-        return this.projectDashboardService.getProjectFrontend(+route.paramMap.get('projectId'))
+        return this.projectDashboardService.getFullProjectFrontend(+route.paramMap.get('projectId'))
     }
 }

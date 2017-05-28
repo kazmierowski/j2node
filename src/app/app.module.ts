@@ -24,6 +24,7 @@ import {ProjectResolver} from "./resolvers/project.resolver";
 import {ProjectDashboardService} from "./components/dashboards/project-dashboard/project-dashboard.service";
 import { BoardsListComponent } from './components/dashboards/boards-list/boards-list.component';
 import {BoardResolver} from "./resolvers/board.resolver";
+import {ValuesPipe} from "app/pipes/values.pipe";
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve:{globalVariables: VariableResolver}, children: [
@@ -51,7 +52,9 @@ const appRoutes: Routes = [
     UserDashboardComponent,
     ProjectsListComponent,
     ProjectDashboardComponent,
-    BoardsListComponent
+    BoardsListComponent,
+    /**  pipes */
+    ValuesPipe
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

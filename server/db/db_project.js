@@ -5,13 +5,29 @@
 const express = require('express');
 const connect = require('./../db/db_connect');
 
-let getFrontentData = (projectId, callback) => {
+let getFullFrontentData = (projectId, callback) => {
     let _data = {};
 
     getTickets(projectId, (tickets) => {
         _data.tickets = tickets;
-        callback();
+        getAllBoardsId(projectId, (boardsId) => {
+            _data.boardsId = boardsId;
+            callback(_data);
+        })
     })
+};
+
+let getAllBoardsId = (projectId, callback) => {
+    let connection = connect.createConnection();
+
+    connection.query('SELECT boardToProject_boardId as boardId ' +
+        'FROM boardToProject_mix WHERE boardToProject_projectId = ' + projectId, (e, rows, fields) => {
+
+        if(e) {return e}
+        else {
+            callback(rows);
+        }
+    } )
 };
 
 let getTickets = (projectId, callback) => {
@@ -24,4 +40,4 @@ let getTickets = (projectId, callback) => {
     connection.end();
 };
 
-exports.getFrontentData = getFrontentData;
+exports.getFullFrontentData = getFullFrontentData;

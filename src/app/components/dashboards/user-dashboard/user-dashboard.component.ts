@@ -19,9 +19,6 @@ export class UserDashboardComponent implements OnInit {
     this.user = this.globalVariables.getGlobalUser();
     this.projects = this.globalVariables.getGlobalUserProjects();
     this.boards = this.globalVariables.getGlobalUserBoards();
-    console.log(this.user);
-    console.log(this.projects);
-    console.log(this.boards);
   }
 
 }

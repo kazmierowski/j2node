@@ -7,9 +7,9 @@ const router = express.Router();
 
 const project = require('./../db/db_project');
 
-router.get('/getFrontend/:projectId', (req, res) => {
+router.get('/getFullFrontend/:projectId', (req, res) => {
 
-    project.getFrontentData(req.params.projectId, (data) => {
+    project.getFullFrontentData(req.params.projectId, (data) => {
         res.send(data);
     })
 

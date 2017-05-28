@@ -16,7 +16,6 @@ export class BoardComponent implements OnInit {
   constructor(private columnService: BoardColumnService, private globalVariables: GlobalVariableService) { }
 
   ngOnInit() {
-    console.log(this.globalVariables.getGlobalUser());
     this.columnService.getColumnInfo().subscribe(
         res => {
           for(let column in res){
