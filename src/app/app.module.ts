@@ -22,6 +22,8 @@ import { ProjectsListComponent } from './components/dashboards/projects-list/pro
 import { ProjectDashboardComponent } from './components/dashboards/project-dashboard/project-dashboard.component';
 import {ProjectResolver} from "./resolvers/project.resolver";
 import {ProjectDashboardService} from "./components/dashboards/project-dashboard/project-dashboard.service";
+import { BoardsListComponent } from './components/dashboards/boards-list/boards-list.component';
+import {BoardResolver} from "./resolvers/board.resolver";
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve:{globalVariables: VariableResolver}, children: [
@@ -29,7 +31,8 @@ const appRoutes: Routes = [
             { path: 'j2node', component: LandingPageComponent },
             { path: 'board', component: BoardComponent },
             { path: 'user-dashboard', component: UserDashboardComponent },
-            { path: 'project/:projectId', resolve:{project: ProjectResolver}, component: ProjectDashboardComponent }
+            { path: 'project/:projectId', resolve:{project: ProjectResolver}, component: ProjectDashboardComponent },
+            { path: 'project/board/:boardId', resolve:{board: BoardResolver}, component: BoardComponent}
         ]}, { path: 'login', canActivate: [AuthGuard], component: LoginComponent}
 ];
 
@@ -47,7 +50,8 @@ const appRoutes: Routes = [
     LoginComponent,
     UserDashboardComponent,
     ProjectsListComponent,
-    ProjectDashboardComponent
+    ProjectDashboardComponent,
+    BoardsListComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

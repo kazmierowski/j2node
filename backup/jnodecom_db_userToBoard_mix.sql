@@ -1,1 +1,0 @@
-INSERT INTO jnodecom_db.userToBoard_mix (userToBoard_userId, userToBoard_boardId) VALUES (2, 1);

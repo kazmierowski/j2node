@@ -1,1 +1,0 @@
-INSERT INTO jnodecom_db.group_tab (group_name) VALUES ('testowa_grupa');

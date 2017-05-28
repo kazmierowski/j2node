@@ -59,7 +59,7 @@ router.post('/auth', (req, res) => {
             req.session.userId = rows[0][0].user_id;
             req.session.save(function () {
 
-                user.saveSessionId(req.sessionID, rows[0][0].user_id, function() {
+                user.saveSessionId(req.sessionID, rows[0][0].user_id, function () {
                     res.send(rows[0]);
                 });
             });
@@ -79,8 +79,10 @@ router.get('/userProjectsInfo', (req, res) => {
 
     connection.query('SELECT project_id, project_name FROM userToProject_mix ' +
         'JOIN project_tab ON project_id = userToProject_projectId AND userToProject_userId = "' + req.session.userId + '"',
-        function(e, rows, fields) {
-            if(e) {return}
+        function (e, rows, fields) {
+            if (e) {
+                return
+            }
             else {
                 res.send(rows);
             }
@@ -94,8 +96,10 @@ router.get('/userBoardsInfo', (req, res) => {
 
     connection.query('SELECT board_id, board_name FROM userToBoard_mix ' +
         'JOIN board_tab ON board_id = userToBoard_boardId AND userToBoard_userId = "' + req.session.userId + '"',
-        function(e, rows, fields) {
-            if(e) {return}
+        function (e, rows, fields) {
+            if (e) {
+                return
+            }
             else {
                 res.send(rows);
             }
@@ -109,14 +113,23 @@ router.get('/userFrontendData', (req, res) => {
 
 
     connection.query('CALL getUserFrontend("2")',
-        function(e, rows, fields) {
-            if(e) {return}
+        function (e, rows, fields) {
+            if (e) {
+                return
+            }
             else {
                 res.send(rows[0][0]);
             }
         });
 
     connection.end();
+});
+
+router.get('/userCompleteFrontendData', (req, res) => {
+
+    user.getCompleteFrontendData(req.session.userId, function(data) {
+        res.send(data);
+    })
 });
 
 module.exports = router;

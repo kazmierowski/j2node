@@ -5,22 +5,14 @@
 const express = require('express');
 const router = express.Router();
 
-const connect = require('./../db/db_connect');
+const project = require('./../db/db_project');
 
 router.get('/getFrontend/:projectId', (req, res) => {
 
-    let connection = connect.createConnection();
+    project.getFrontentData(req.params.projectId, (data) => {
+        res.send(data);
+    })
 
-    connection.query('CALL getUserProjectFrontend(' + req.params.projectId + ')', function(e, rows, fields) {
-
-        if (e) throw e;
-
-        else {
-            res.send(rows[0]);
-        }
-    });
-
-    connection.end();
 });
 
 module.exports = router;
