@@ -62,6 +62,9 @@ export class ProjectDashboardService {
                 }
                 this.globalVariables.getGlobalUserProjects()[projectId]
                     .setStatuses(statuses);
+
+                this.globalVariables.getGlobalUserProjects()[projectId]
+                    .setFullFetch(true);
             });
     }
 }

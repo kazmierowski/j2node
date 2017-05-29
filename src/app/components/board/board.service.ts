@@ -20,6 +20,9 @@ export class BoardService {
             }
             this.globalVariables.getGlobalUserBoards()[boardId]
                 .setStatusesList(statuses);
+
+            this.globalVariables.getGlobalUserBoards()[boardId]
+                .setFullFetch(true);
         });
   }
 }

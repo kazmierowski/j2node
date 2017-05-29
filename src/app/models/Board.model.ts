@@ -15,11 +15,13 @@ export class Board {
     private _ticketsList: Array<number>;
     private _statusesList: Array<number>;
 
+    private _fullFetch: boolean;
 
     constructor(id: number, name: string, isTemplate: number, fullFetch?: boolean) {
         this._id = id;
         this._name = name;
         this._isTemplate = isTemplate;
+        this._fullFetch = fullFetch;
     }
 
     public getName() {
@@ -36,5 +38,13 @@ export class Board {
 
     public getStatusesList(): Array<number> {
         return this._statusesList;
+    }
+
+    public setFullFetch(fullFetch: boolean) {
+        this._fullFetch = fullFetch;
+    }
+
+    public getFullFetch(): boolean {
+        return this._fullFetch;
     }
 }
