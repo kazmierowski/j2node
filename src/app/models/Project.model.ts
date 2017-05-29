@@ -58,4 +58,12 @@ export class Project {
     public getStatuses(): object {
         return this._statuses;
     }
+
+    public setFullFetch(fullFetch: boolean) {
+        this._fullFetch = fullFetch;
+    }
+
+    public getFullFetch(): boolean {
+        return this._fullFetch;
+    }
 }

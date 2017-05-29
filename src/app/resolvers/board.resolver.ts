@@ -4,13 +4,18 @@ import {Observable} from 'rxjs/Observable';
 import {ProjectDashboardService} from '../components/dashboards/project-dashboard/project-dashboard.service';
 import {Board} from '../models/Board.model';
 import {BoardService} from '../components/board/board.service';
+import {GlobalVariableService} from "../global-variable.service";
 
 @Injectable()
 export class BoardResolver implements Resolve<Board> {
-    constructor(private boardService: BoardService) {}
+    constructor(private boardService: BoardService, private globalVariables: GlobalVariableService) {}
 
     resolve(route: ActivatedRouteSnapshot,
             state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-        return this.boardService.getBoardFrontend(+route.paramMap.get('boardId'));
+        if(this.globalVariables.getGlobalUserBoards()[route.paramMap.get('boardId')]
+                .getFullFetch() === false) {
+            return this.boardService.getBoardFrontend(+route.paramMap.get('boardId'));
+        }
+
     }
 }
