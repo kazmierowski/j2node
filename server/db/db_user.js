@@ -70,7 +70,6 @@ let getUserProjects = (userId, callback) => {
 
 
     connection.query('CALL getUserProjectsFrontend("' + userId + '")', function (e, rows, fields) {
-        console.log(rows[0]);
         callback(rows[0]);
     });
 

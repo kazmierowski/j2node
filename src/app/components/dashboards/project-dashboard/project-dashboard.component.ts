@@ -26,9 +26,5 @@ export class ProjectDashboardComponent implements OnInit {
                 this.globalVariables.getGlobalUserProjects()[params.projectId].getBoardsList()
             );
         });
-
-        console.log(this.project);
-        console.log(this.boards);
-
     }
 }

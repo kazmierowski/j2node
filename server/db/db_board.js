@@ -22,11 +22,9 @@ let getBoardStatusesId = (boardId, callback) => {
         'FROM ticketStatusToBoard_mix WHERE ticketStatusToBoard_boardId = ' + boardId, (e, rows, fields) => {
 
         if (e) {
-            console.log(e);
             return e
         }
         else {
-            console.log(rows);
             callback(rows);
         }
     });

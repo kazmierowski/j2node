@@ -16,7 +16,6 @@ export class TicketFilters {
             if(tickets.hasOwnProperty(value)) {
                 if(tickets[value].getStatus() === status) {
                     readyObject[tickets[value].getId()] = tickets[value];
-                    console.log(tickets[value]);
                 }
             }
         }
