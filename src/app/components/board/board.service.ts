@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {GlobalVariableService} from "../../global-variable.service";
+import {GlobalVariableService} from '../../global-variable.service';
 
 @Injectable()
 export class BoardService {
@@ -13,13 +13,13 @@ export class BoardService {
         .map((res: Response) => res.json())
         .do((res) => {
 
-            let statuses = [];
+            const statuses = [];
 
-            for(let id of res.statuses) {
+            for (const id of res.statuses) {
                 statuses.push(id.statusId);
             }
             this.globalVariables.getGlobalUserBoards()[boardId]
                 .setStatusesList(statuses);
-        })
+        });
   }
 }

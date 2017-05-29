@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {User} from "./models/User.model";
+import {User} from './models/User.model';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Project} from "./models/Project.model";
-import {Board} from "./models/Board.model";
+import {Project} from './models/Project.model';
+import {Board} from './models/Board.model';
 
 
 @Injectable()
@@ -68,22 +68,22 @@ export class GlobalVariableService {
                     res.user['userBoards']
                 ));
 
-                for(let project of res.projects) {
+                for (const project of res.projects) {
                     this.globalUserProjects[project.project_id] = new Project(
                         project.project_id,
                         project.project_name,
                         project.project_admin,
                         false
-                    )
+                    );
                 }
 
-                for(let board of res.boards) {
+                for (const board of res.boards) {
                     this.globalUserBoards[board.board_id] = new Board(
                         board.board_id,
                         board.board_name,
                         board.board_isTemplate,
                         false
-                    )
+                    );
                 }
             });
     }

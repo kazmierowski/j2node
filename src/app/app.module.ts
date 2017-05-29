@@ -15,26 +15,26 @@ import { BoardColumnComponent } from './components/board/board-column/column.com
 import { BackgroundColorDirective } from './directives/background-color.directive';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
-import {GlobalVariableService} from "./global-variable.service";
-import {VariableResolver} from "./resolvers/variable.resolver";
+import {GlobalVariableService} from './global-variable.service';
+import {VariableResolver} from './resolvers/variable.resolver';
 import { UserDashboardComponent } from './components/dashboards/user-dashboard/user-dashboard.component';
 import { ProjectsListComponent } from './components/dashboards/projects-list/projects-list.component';
 import { ProjectDashboardComponent } from './components/dashboards/project-dashboard/project-dashboard.component';
-import {ProjectResolver} from "./resolvers/project.resolver";
-import {ProjectDashboardService} from "./components/dashboards/project-dashboard/project-dashboard.service";
+import {ProjectResolver} from './resolvers/project.resolver';
+import {ProjectDashboardService} from './components/dashboards/project-dashboard/project-dashboard.service';
 import { BoardsListComponent } from './components/dashboards/boards-list/boards-list.component';
-import {BoardResolver} from "./resolvers/board.resolver";
-import {ValuesPipe} from "app/pipes/values.pipe";
-import {BoardService} from "./components/board/board.service";
+import {BoardResolver} from './resolvers/board.resolver';
+import {ValuesPipe} from 'app/pipes/values.pipe';
+import {BoardService} from './components/board/board.service';
 import { ColumnSizeDirective } from './directives/column-size.directive';
 
 const appRoutes: Routes = [
-        { path: '', canActivate: [AuthGuard], resolve:{globalVariables: VariableResolver}, children: [
+        { path: '', canActivate: [AuthGuard], resolve: {globalVariables: VariableResolver}, children: [
             { path: '', redirectTo: 'j2node', pathMatch: 'full'},
             { path: 'j2node', component: LandingPageComponent },
             { path: 'user-dashboard', component: UserDashboardComponent },
-            { path: 'project/:projectId', resolve:{project: ProjectResolver}, component: ProjectDashboardComponent },
-            { path: 'project/:projectId/board/:boardId', resolve:{board: BoardResolver, project: ProjectResolver}, component: BoardComponent}
+            { path: 'project/:projectId', resolve: {project: ProjectResolver}, component: ProjectDashboardComponent },
+            { path: 'project/:projectId/board/:boardId', resolve: {board: BoardResolver, project: ProjectResolver}, component: BoardComponent}
         ]},
         { path: 'login', canActivate: [AuthGuard], component: LoginComponent}
 ];

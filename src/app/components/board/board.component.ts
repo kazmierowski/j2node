@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {BoardColumnService} from "./board-column/board-column.service";
-import {Column} from "../../models/Column.model";
-import {GlobalVariableService} from "../../global-variable.service";
-import {ActivatedRoute} from "@angular/router";
-import {Board} from "../../models/Board.model";
-import {Project} from "../../models/Project.model";
-import {FilterByKey} from "../../../helpers/filters.helper";
+import {BoardColumnService} from './board-column/board-column.service';
+import {Column} from '../../models/Column.model';
+import {GlobalVariableService} from '../../global-variable.service';
+import {ActivatedRoute} from '@angular/router';
+import {Board} from '../../models/Board.model';
+import {Project} from '../../models/Project.model';
+import {FilterByKey} from '../../../helpers/filters.helper';
 
 @Component({
     selector: 'app-board',

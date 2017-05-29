@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BoardTicketService} from "./board-ticket.service";
-import {Ticket} from "../../../models/Ticket.model";
+import {BoardTicketService} from './board-ticket.service';
+import {Ticket} from '../../../models/Ticket.model';
 
 @Component({
   selector: 'app-board-ticket',

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ProjectDashboardService} from "./project-dashboard.service";
-import {ActivatedRoute} from "@angular/router";
-import {GlobalVariableService} from "../../../global-variable.service";
-import {FilterByKey} from "../../../../helpers/filters.helper";
+import {ProjectDashboardService} from './project-dashboard.service';
+import {ActivatedRoute} from '@angular/router';
+import {GlobalVariableService} from '../../../global-variable.service';
+import {FilterByKey} from '../../../../helpers/filters.helper';
 
 @Component({
     selector: 'app-project-dashboard',

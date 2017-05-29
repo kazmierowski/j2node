@@ -1,4 +1,3 @@
-import {Board} from "./Board.model";
 /**
  * Created by kamil on 24/05/17.
  */

@@ -2,7 +2,7 @@
  * Created by kamil on 29/05/17.
  */
 
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class TicketFilters {
@@ -10,11 +10,11 @@ export class TicketFilters {
     constructor() {}
 
     public filterTicketsSetByStatus(tickets, status: number) {
-        let readyObject = {};
+        const readyObject = {};
 
-        for(let value in tickets) {
-            if(tickets.hasOwnProperty(value)) {
-                if(tickets[value].getStatus() === status) {
+        for (const value in tickets) {
+            if (tickets.hasOwnProperty(value)) {
+                if (tickets[value].getStatus() === status) {
                     readyObject[tickets[value].getId()] = tickets[value];
                 }
             }

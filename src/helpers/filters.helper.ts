@@ -2,7 +2,7 @@
  * Created by kamil on 28/05/17.
  */
 
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class FilterByKey {
@@ -10,10 +10,10 @@ export class FilterByKey {
     constructor() {}
 
     public object(jsObject: object, valueSet: Array<any>) {
-        let readyObject = {};
+        const readyObject = {};
 
-        for(let value of valueSet) {
-            if(jsObject[value] !== undefined) {
+        for (const value of valueSet) {
+            if (jsObject[value] !== undefined) {
                 readyObject[value] = jsObject[value];
             }
         }

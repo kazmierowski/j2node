@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {GlobalVariableService} from "../../../global-variable.service";
-import {Ticket} from "../../../models/Ticket.model";
-import {TicketStatus} from "../../../models/TicketStatus.model";
+import {GlobalVariableService} from '../../../global-variable.service';
+import {Ticket} from '../../../models/Ticket.model';
+import {TicketStatus} from '../../../models/TicketStatus.model';
 
 @Injectable()
 export class ProjectDashboardService {
@@ -16,17 +16,17 @@ export class ProjectDashboardService {
             .map((res: Response) => res.json())
             .do((res) => {
 
-                let table = [];
-                let tickets = {};
-                let statuses = {};
+                const table = [];
+                const tickets = {};
+                const statuses = {};
 
-                for (let id of res.boardsId) {
+                for (const id of res.boardsId) {
                     table.push(id.boardId);
                 }
                 this.globalVariables.getGlobalUserProjects()[projectId]
                     .setBoardsList(table);
 
-                for (let ticket of res.tickets) {
+                for (const ticket of res.tickets) {
                     tickets[ticket.ticket_id] = new Ticket(
                         ticket['ticket_id'],
                         ticket['ticket_type'],
@@ -48,20 +48,20 @@ export class ProjectDashboardService {
                         ticket['ticket_comments'],
                         ticket['ticket_workLog'],
                         ticket['ticket_history']
-                    )
+                    );
                 }
                 this.globalVariables.getGlobalUserProjects()[projectId]
                     .setTickets(tickets);
 
-                for (let status of res.statuses) {
+                for (const status of res.statuses) {
                     statuses[status.ticketStatus_id] = new TicketStatus(
                         status['ticketStatus_id'],
                         status['ticketStatus_name'],
                         status['ticketStatus_alias']
-                    )
+                    );
                 }
                 this.globalVariables.getGlobalUserProjects()[projectId]
                     .setStatuses(statuses);
-            })
+            });
     }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GlobalVariableService} from "../../../global-variable.service";
-import {ProjectDashboardService} from "../project-dashboard/project-dashboard.service";
+import {GlobalVariableService} from '../../../global-variable.service';
 
 @Component({
   selector: 'app-user-dashboard',

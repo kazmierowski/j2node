@@ -1,8 +1,8 @@
-import {Project} from "./Project.model";
-import {TicketStatus} from "./TicketStatus.model";
 /**
  * Created by kamil on 24/05/17.
  */
+
+import {Project} from './Project.model';
 
 export class Board {
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuService} from "./menu.service";
+import {MenuService} from './menu.service';
 
 @Component({
   selector: 'app-menu',
@@ -17,13 +17,13 @@ export class MenuComponent implements OnInit {
     this.menuFields = [];
     this.service.getMenuFields().subscribe(
         res => {
-          for(let field in res) {
-              if(res.hasOwnProperty(field)) {
+          for (const field in res) {
+              if (res.hasOwnProperty(field)) {
                   this.menuFields.push(res[field]);
               }
           }
         }
-    )
+    );
   }
 
 }
