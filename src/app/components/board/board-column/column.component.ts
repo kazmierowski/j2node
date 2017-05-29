@@ -1,7 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BoardTicketService} from '../board-ticket/board-ticket.service';
-import {Column} from '../../../models/Column.model';
-import {Ticket} from '../../../models/Ticket.model';
 import {GlobalVariableService} from '../../../global-variable.service';
 import {TicketFilters} from '../../../../helpers/ticket.helper';
 import {ActivatedRoute} from '@angular/router';
@@ -18,6 +16,7 @@ export class BoardColumnComponent implements OnInit {
   @Input('column') column: TicketStatus;
 
   public tickets = {};
+  public ticketsCount: number;
 
   constructor(
       private globalVariables: GlobalVariableService,
@@ -30,7 +29,12 @@ export class BoardColumnComponent implements OnInit {
       this.tickets = this.ticketHelper.filterTicketsSetByStatus(
           this.globalVariables.getGlobalUserProjects()[params.projectId].getTickets(),
           this.column.getId());
+      this.ticketsCount = Object.keys(this.tickets).length;
     });
+  }
+
+  ngOnChange() {
+    this.ticketsCount = Object.keys(this.tickets).length;
   }
 
 }
