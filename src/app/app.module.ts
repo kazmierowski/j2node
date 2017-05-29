@@ -25,16 +25,18 @@ import {ProjectDashboardService} from "./components/dashboards/project-dashboard
 import { BoardsListComponent } from './components/dashboards/boards-list/boards-list.component';
 import {BoardResolver} from "./resolvers/board.resolver";
 import {ValuesPipe} from "app/pipes/values.pipe";
+import {BoardService} from "./components/board/board.service";
+import { ColumnSizeDirective } from './directives/column-size.directive';
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve:{globalVariables: VariableResolver}, children: [
             { path: '', redirectTo: 'j2node', pathMatch: 'full'},
             { path: 'j2node', component: LandingPageComponent },
-            { path: 'board', component: BoardComponent },
             { path: 'user-dashboard', component: UserDashboardComponent },
             { path: 'project/:projectId', resolve:{project: ProjectResolver}, component: ProjectDashboardComponent },
-            { path: 'project/board/:boardId', resolve:{board: BoardResolver}, component: BoardComponent}
-        ]}, { path: 'login', canActivate: [AuthGuard], component: LoginComponent}
+            { path: 'project/:projectId/board/:boardId', resolve:{board: BoardResolver, project: ProjectResolver}, component: BoardComponent}
+        ]},
+        { path: 'login', canActivate: [AuthGuard], component: LoginComponent}
 ];
 
 @NgModule({
@@ -54,15 +56,25 @@ const appRoutes: Routes = [
     ProjectDashboardComponent,
     BoardsListComponent,
     /**  pipes */
-    ValuesPipe
+    ValuesPipe,
+    ColumnSizeDirective
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
+
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [AuthGuard, GlobalVariableService, VariableResolver, ProjectResolver, ProjectDashboardService],
+  providers: [
+      AuthGuard,
+      GlobalVariableService,
+      VariableResolver,
+      ProjectResolver,
+      ProjectDashboardService,
+      BoardResolver,
+      BoardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,7 +12,10 @@ let getFullFrontentData = (projectId, callback) => {
         _data.tickets = tickets;
         getAllBoardsId(projectId, (boardsId) => {
             _data.boardsId = boardsId;
-            callback(_data);
+            getStatuses(projectId, (statuses) => {
+                _data.statuses = statuses;
+                callback(_data);
+            })
         })
     })
 };
@@ -34,7 +37,18 @@ let getTickets = (projectId, callback) => {
     let connection = connect.createConnection();
 
     connection.query('CALL getProjectTickets("' + projectId + '")', (e, rows, fields) => {
-        callback(rows[0][0]);
+        callback(rows[0]);
+    });
+
+    connection.end();
+};
+
+let getStatuses = (boardId, callback) => {
+
+    let connection = connect.createConnection();
+
+    connection.query('CALL getUserProjectStatuses("' + boardId + '")', (e, rows, fields) => {
+        callback(rows[0]);
     });
 
     connection.end();

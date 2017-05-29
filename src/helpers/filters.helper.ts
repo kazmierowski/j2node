@@ -9,7 +9,7 @@ export class FilterByKey {
 
     constructor() {}
 
-    public object(jsObject: Object, valueSet: Array<any>) {
+    public object(jsObject: object, valueSet: Array<any>) {
         let readyObject = {};
 
         for(let value of valueSet) {
@@ -19,5 +19,4 @@ export class FilterByKey {
         }
         return readyObject;
     }
-
 }

@@ -2,40 +2,33 @@
  * Created by kamil on 28/05/17.
  */
 
-const express = require('express');
 const connect = require('./../db/db_connect');
 
 let getFrontendData = (boardId, callback) => {
 
     let _data = {};
 
-    getBoard(boardId, (board) => {
-        _data.board = board;
-
-        getBoardStatuses(boardId, (statuses) => {
-            _data.statuses = statuses;
-            callback(_data);
-        })
+    getBoardStatusesId(boardId, (statuses) => {
+        _data.statuses = statuses;
+        callback(_data);
     })
 };
 
-let getBoard = (boardId, callback) => {
+let getBoardStatusesId = (boardId, callback) => {
 
     let connection = connect.createConnection();
 
-    connection.query('CALL ', (e, rows, fields) => {
-        callback(rows[0][0]);
-    });
+    connection.query('SELECT ticketStatusToBoard_ticketStatusId as statusId ' +
+        'FROM ticketStatusToBoard_mix WHERE ticketStatusToBoard_boardId = ' + boardId, (e, rows, fields) => {
 
-    connection.end();
-};
-
-let getBoardStatuses = (boardId, callback) => {
-
-    let connection = connect.createConnection();
-
-    connection.query('CALL getUserBoardFrontend("' + boardId + '")', (e, rows, fields) => {
-        callback(rows[0][0]);
+        if (e) {
+            console.log(e);
+            return e
+        }
+        else {
+            console.log(rows);
+            callback(rows);
+        }
     });
 
     connection.end();

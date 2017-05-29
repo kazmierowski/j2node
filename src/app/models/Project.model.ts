@@ -11,9 +11,10 @@ export class Project {
     private _admin: number; // for now amin user id
 
     private _fullFetch = false;
+    private _tickets:  object;
+    private _statuses: object;
     private _boardsList: Array<number>;
     private _usersList: Array<number>; // list of user ids
-    private _statusesList: Array<number>; // statuses ids
 
 
     constructor(id: number, name: string, admin: number, fullFetch?: boolean, boardsList?: Array<number>/*, boardsList: Array<Board>, usersList: Array<number>, statusesList: Array<number>*/) {
@@ -41,5 +42,21 @@ export class Project {
 
     public getBoardsList(): Array<number> {
         return this._boardsList;
+    }
+
+    public setTickets(tickets: object) {
+        this._tickets = tickets;
+    }
+
+    public getTickets(): object {
+        return this._tickets;
+    }
+
+    public setStatuses(statuses: object) {
+        this._statuses = statuses;
+    }
+
+    public getStatuses(): object {
+        return this._statuses;
     }
 }

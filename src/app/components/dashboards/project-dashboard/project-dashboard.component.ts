@@ -1,29 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProjectDashboardService} from "./project-dashboard.service";
 import {ActivatedRoute} from "@angular/router";
 import {GlobalVariableService} from "../../../global-variable.service";
 import {FilterByKey} from "../../../../helpers/filters.helper";
 
 @Component({
-  selector: 'app-project-dashboard',
-  templateUrl: './project-dashboard.component.html',
-  styleUrls: ['./project-dashboard.component.scss'],
-  providers: [ProjectDashboardService, FilterByKey]
+    selector: 'app-project-dashboard',
+    templateUrl: './project-dashboard.component.html',
+    styleUrls: ['./project-dashboard.component.scss'],
+    providers: [ProjectDashboardService, FilterByKey]
 })
 export class ProjectDashboardComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private globalVariables: GlobalVariableService, private filterByKey: FilterByKey) { }
+    constructor(private route: ActivatedRoute, private globalVariables: GlobalVariableService, private filterByKey: FilterByKey) {
+    }
 
-  public project;
-  public boards;
+    public project;
+    public boards;
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.project = this.globalVariables.getGlobalUserProjects()[params.projectId];
-      this.boards = this.filterByKey.object(
-          this.globalVariables.getGlobalUserBoards(),
-          this.globalVariables.getGlobalUserProjects()[params.projectId].getBoardsList()
-      );
-    });
-  }
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+            this.project = this.globalVariables.getGlobalUserProjects()[params.projectId];
+            this.boards = this.filterByKey.object(
+                this.globalVariables.getGlobalUserBoards(),
+                this.globalVariables.getGlobalUserProjects()[params.projectId].getBoardsList()
+            );
+        });
+
+        console.log(this.project);
+        console.log(this.boards);
+
+    }
 }
