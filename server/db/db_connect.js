@@ -13,7 +13,8 @@ function createConnection(){
         host: 'j2node.com',
         user: 'jnodecom_j2',
         password: 'j2nodecom',
-        database: 'jnodecom_db'
+        database: 'jnodecom_db',
+        debug: false
     });
 
     return connection;

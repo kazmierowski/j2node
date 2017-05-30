@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import {Http, Response} from "@angular/http";
+import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {serverBaseUrl} from '../../../app.variables';
-import {Ticket} from "../../../models/Ticket.model";
+import {Ticket} from '../../../models/Ticket.model';
 
 @Injectable()
 export class BoardTicketService {
 
-  private allTicketsUrl: string = 'ticket/allTickets';
-  private addTicketUrl: string = 'ticket/addTicket';
+  private allTicketsUrl = 'ticket/allTickets';
+  private addTicketUrl = 'ticket/addTicket';
 
   constructor(private http: Http) { }
 

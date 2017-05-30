@@ -1,2 +1,2 @@
 <app-left-menu></app-left-menu>
-<app-board-column *ngFor="let column of columns" [column]="column"></app-board-column>
+<app-board-column *ngFor="let column of columns | values" [column]="column" [columnSize]="columnCount"></app-board-column>

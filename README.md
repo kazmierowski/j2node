@@ -12,6 +12,8 @@ next install the Angular Cli with `npm install -g @angular/cli` so you can run t
 Before deployment pls run `ng build`. This will create build files in `dist` directory. 
 After that run `node server.js` for a dev server. Navigate to `http://localhost:5000/`. Node will automatically serve files from `dist` directory. 
 
+You can use shorthand for that: `npm run-script serve` which will do both :)
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.

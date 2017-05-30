@@ -1,7 +1,8 @@
-import {TicketType} from "../enums/TicketType.enum";
 /**
  * Created by Kamil on 24.04.2017.
  */
+
+import {TicketType} from '../enums/TicketType.enum';
 
 export class Ticket {
 

@@ -1,3 +1,3 @@
-<div class="columnName">{{column.getName()}} : <span class="tasksNumber">{{ticketsList.length}}</span></div>
+<div class="columnName">{{column.getName()}} : <span class="tasksNumber">{{ticketsCount}}</span></div>
 
-<app-board-ticket *ngFor="let ticket of ticketsList" [ticket]="ticket"></app-board-ticket>
+<app-board-ticket *ngFor="let ticket of tickets | values" [ticket]="ticket"></app-board-ticket>

@@ -1,59 +1,41 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BoardTicketService} from '../board-ticket/board-ticket.service';
-import {Column} from '../../../models/Column.model';
-import {Ticket} from '../../../models/Ticket.model';
+import {GlobalVariableService} from '../../../global-variable.service';
+import {TicketFilters} from '../../../helpers/ticket.helper';
+import {ActivatedRoute} from '@angular/router';
+import {TicketStatus} from '../../../models/TicketStatus.model';
 
 @Component({
-  selector: 'app-board-column',
-  templateUrl: './column.component.html',
-  styleUrls: ['./column.component.scss'],
-  providers: [BoardTicketService]
+    selector: 'app-board-column',
+    templateUrl: './column.component.html',
+    styleUrls: ['./column.component.scss'],
+    providers: [BoardTicketService, TicketFilters]
 })
 export class BoardColumnComponent implements OnInit {
 
-  @Input('column') column: Column;
+    @Input('column') column: TicketStatus;
 
-  public ticketsList = [];
+    public tickets = {};
+    public ticketsCount: number;
 
-  constructor(private ticketService: BoardTicketService) { }
+    constructor(private globalVariables: GlobalVariableService,
+                private ticketHelper: TicketFilters,
+                private route: ActivatedRoute) {
+    }
 
-  ngOnInit() {
-    this.ticketService.getAllTickets(this.column['name']).subscribe(
-        res => {
-          for (const ticket in res) {
-            if (res.hasOwnProperty(ticket)) {
-              const obj = res[ticket];
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+            this.tickets = this.ticketHelper.filterTicketsSetByStatus(
+                this.globalVariables.getGlobalUserProjects()[params.projectId].getTickets(),
+                this.column.getId());
+            this.ticketsCount = Object.keys(this.tickets).length
 
-              if(obj['ticket_status'] == this.column.getStatus()){
-                this.ticketsList.push(
-                    new Ticket(
-                        obj['ticket_id'],
-                        obj['ticket_type'],
-                        obj['ticket_title'],
-                        obj['ticket_inProjectId'],
-                        obj['ticket_createDate'],
-                        obj['ticket_lastModificationDate'],
-                        obj['ticket_description'],
-                        obj['ticket_points'],
-                        obj['ticket_assignee'],
-                        obj['ticket_reporter'],
-                        obj['ticket_watchers'],
-                        obj['ticket_priority'],
-                        obj['ticket_label'],
-                        obj['ticket_environment'],
-                        obj['ticket_sprintName'],
-                        obj['ticket_status'],
-                        obj['ticket_attachments'],
-                        obj['ticket_comments'],
-                        obj['ticket_workLog'],
-                        obj['ticket_history'],
-                    )
-                );
-              }
-            }
-          }
-        }
-    );
-  }
+
+        });
+    }
+
+    ngOnChange() {
+        this.ticketsCount = Object.keys(this.tickets).length;
+    }
 
 }

@@ -1,0 +1,3 @@
+<ul>
+  <li *ngFor="let project of projects | values" routerLink="/project/{{project.getId()}}">{{project.getName()}}</li>
+</ul>
