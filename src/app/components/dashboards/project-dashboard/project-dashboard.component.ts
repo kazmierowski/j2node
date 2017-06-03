@@ -12,11 +12,14 @@ import {FilterByKey} from '../../../helpers/filters.helper';
 })
 export class ProjectDashboardComponent implements OnInit {
 
+
+
     constructor(private route: ActivatedRoute, private globalVariables: GlobalVariableService, private filterByKey: FilterByKey) {
     }
 
     public project;
     public boards;
+    public overallChartData;
 
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -25,6 +28,21 @@ export class ProjectDashboardComponent implements OnInit {
                 this.globalVariables.getGlobalUserBoards(),
                 this.globalVariables.getGlobalUserProjects()[params.projectId].getBoardsList()
             );
+            console.log(this.globalVariables.getGlobalUserProjects()[params.projectId]);
         });
+        this.overallChartData = [
+            {
+                "name": "In progress",
+                "value": 50
+            },
+            {
+                "name": "Bugs",
+                "value": 10
+            },
+            {
+                "name": "Done",
+                "value": 20
+            }
+        ];
     }
 }
