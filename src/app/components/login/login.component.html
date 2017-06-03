@@ -1,10 +1,23 @@
-<div class="loginForm">
-  <input type="email" class="emailInput" placeholder="Email" [(ngModel)]="useremail" required>
-  <input type="password" class="emailInput" placeholder="Password" (keyup.enter)="login()" [(ngModel)]="userpass" required>
-  <button class="loginButton" (click)="login()">Login</button>
-  <p class="forgottenPass">Forgotten password</p>
-  <p class="createAccount">Create account</p>
-</div>
-<div class="communicat">
-  <p>{{communicat}}</p>
+<!--<div class="loginForm">-->
+  <!--<input type="email" class="emailInput" placeholder="Email" [(ngModel)]="useremail" required>-->
+  <!--<input type="password" class="emailInput" placeholder="Password" (keyup.enter)="login()" [(ngModel)]="userpass" required>-->
+  <!--<button class="loginButton" (click)="login()">Login</button>-->
+  <!--<p class="forgottenPass">Forgotten password</p>-->
+  <!--<p class="createAccount">Create account</p>-->
+<!--</div>-->
+<!--<div class="communicat">-->
+  <!--<p>{{communicat}}</p>-->
+<!--</div>-->
+
+
+<div class="login-wrapper">
+  <form action="">
+    <md-input-container class="full-width">
+      <input mdInput type="email" placeholder="email" name="useremail" [(ngModel)]="useremail" required>
+    </md-input-container>
+    <md-input-container class="full-width">
+      <input mdInput type="password" placeholder="password" name="userpass" [(ngModel)]="userpass" required>
+    </md-input-container>
+    <button md-button class="login-button" (click)="login()">Login</button>
+  </form>
 </div>

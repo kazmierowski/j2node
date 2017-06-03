@@ -27,6 +27,12 @@ import {BoardResolver} from './resolvers/board.resolver';
 import {ValuesPipe} from 'app/pipes/values.pipe';
 import {BoardService} from './components/board/board.service';
 import { ColumnSizeDirective } from './directives/column-size.directive';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {
+    MaterialModule, MdButtonModule, MdCheckboxModule, MdGridListModule, MdIconModule, MdInputContainer,
+    MdInputDirective,
+    MdInputModule, MdListModule, MdMenuModule, MdSidenav, MdSidenavModule
+} from "@angular/material";
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve: {globalVariables: VariableResolver}, children: [
@@ -64,7 +70,16 @@ const appRoutes: Routes = [
 
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    /** Material design */
+    BrowserAnimationsModule,
+    MdInputModule,
+    MdButtonModule,
+    MdListModule,
+    MdSidenavModule,
+    MdIconModule,
+    MdMenuModule,
+    MdGridListModule
   ],
   providers: [
       AuthGuard,

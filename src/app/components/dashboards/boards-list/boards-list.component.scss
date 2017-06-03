@@ -3,16 +3,10 @@
 :host {
   display: block;
 
-  ul {
-    li {
-      cursor: pointer;
-      height: 30px;
-      line-height: 30px;
+  md-list {
+    button {
+      text-align: left;
       border-bottom: 1px solid $color-border-light;
-
-      &:hover {
-        background-color: $color-select-light;
-      }
     }
   }
 }

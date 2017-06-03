@@ -1,6 +1,25 @@
-<div class="trigger-wrapper">
-  <div *ngFor="let field of menuFields">
+<!--<div class="trigger-wrapper">-->
+  <!--<div *ngFor="let field of menuFields">-->
     <!--<span>{{field.constructor.name}}</span> : <span>{{field.url}}</span>-->
-  </div>
-  <span class="menu-trigger"></span>
-</div>
+  <!--</div>-->
+
+<!--</div>-->
+
+<button class="menu-trigger" md-icon-button [mdMenuTriggerFor]="menu">
+  <md-icon>menu</md-icon>
+</button>
+
+<md-menu #menu>
+  <button md-menu-item routerLink="/user-dashboard">
+    <md-icon>assessment</md-icon>
+    <span>Dashboard</span>
+  </button>
+  <button md-menu-item disabled>
+    <md-icon>message</md-icon>
+    <span>Messages</span>
+  </button>
+  <button md-menu-item>
+    <md-icon>account_box</md-icon>
+    <span>Your account</span>
+  </button>
+</md-menu>
