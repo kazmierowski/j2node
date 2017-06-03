@@ -29,8 +29,8 @@ import {BoardService} from './components/board/board.service';
 import { ColumnSizeDirective } from './directives/column-size.directive';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
-    MaterialModule, MdButtonModule, MdCheckboxModule, MdInputContainer, MdInputDirective,
-    MdInputModule
+    MaterialModule, MdButtonModule, MdCheckboxModule, MdIconModule, MdInputContainer, MdInputDirective,
+    MdInputModule, MdListModule, MdMenuModule, MdSidenav, MdSidenavModule
 } from "@angular/material";
 
 const appRoutes: Routes = [
@@ -73,7 +73,11 @@ const appRoutes: Routes = [
     /** Material design */
     BrowserAnimationsModule,
     MdInputModule,
-    MdButtonModule
+    MdButtonModule,
+    MdListModule,
+    MdSidenavModule,
+    MdIconModule,
+    MdMenuModule
   ],
   providers: [
       AuthGuard,
