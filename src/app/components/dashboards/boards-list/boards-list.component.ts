@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class BoardsListComponent implements OnInit {
 
   @Input('boards') boards;
+  @Input('title') title = true;
 
   constructor() { }
 

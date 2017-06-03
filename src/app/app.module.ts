@@ -33,6 +33,7 @@ import {
     MdInputDirective,
     MdInputModule, MdListModule, MdMenuModule, MdSidenav, MdSidenavModule
 } from "@angular/material";
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve: {globalVariables: VariableResolver}, children: [
@@ -79,7 +80,8 @@ const appRoutes: Routes = [
     MdSidenavModule,
     MdIconModule,
     MdMenuModule,
-    MdGridListModule
+    MdGridListModule,
+    NgxChartsModule
   ],
   providers: [
       AuthGuard,

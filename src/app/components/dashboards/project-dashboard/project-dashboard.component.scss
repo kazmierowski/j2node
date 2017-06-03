@@ -6,4 +6,15 @@
   padding-top: $board-padding-top;
 
   color: $color-main;
+
+  .boards-list {
+    width: 48%;
+    display: inline-block;
+  }
+
+  .overall-chart {
+    width: 48%;
+    display: inline-block;
+    float: right;
+  }
 }
