@@ -1,12 +1,25 @@
 <h2 class="underline title">{{globalVariables.getGlobalUser().getUserFirstName()}}'s dashboard</h2>
 
 <app-left-menu></app-left-menu>
-<div class="projects-list">
-    <app-projects-list [projects]="projects"></app-projects-list>
-</div>
+<!--<div class="projects-list">-->
+    <!--<app-projects-list [projects]="projects"></app-projects-list>-->
+<!--</div>-->
 
-<div class="chart">
-
-</div>
-
-<!--<app-boards-list [boards]="boards"></app-boards-list>-->
+<md-tab-group>
+    <md-tab>
+        <ng-template md-tab-label>
+            <h4>Projects:</h4>
+        </ng-template>
+        <div class="projects-list">
+            <app-projects-list title="false" [projects]="projects"></app-projects-list>
+        </div>
+    </md-tab>
+    <md-tab>
+        <ng-template md-tab-label>
+            <h4>Boards:</h4>
+        </ng-template>
+        <div class="boards-list">
+            <app-boards-list title="false" [boards]="boards"></app-boards-list>
+        </div>
+    </md-tab>
+</md-tab-group>

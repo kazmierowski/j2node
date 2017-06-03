@@ -31,7 +31,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
     MaterialModule, MdButtonModule, MdCheckboxModule, MdGridListModule, MdIconModule, MdInputContainer,
     MdInputDirective,
-    MdInputModule, MdListModule, MdMenuModule, MdSidenav, MdSidenavModule
+    MdInputModule, MdListModule, MdMenuModule, MdSidenav, MdSidenavModule, MdTabsModule
 } from "@angular/material";
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 
@@ -81,7 +81,8 @@ const appRoutes: Routes = [
     MdIconModule,
     MdMenuModule,
     MdGridListModule,
-    NgxChartsModule
+    MdTabsModule,
+    NgxChartsModule,
   ],
   providers: [
       AuthGuard,

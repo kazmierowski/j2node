@@ -1,5 +1,7 @@
 @import '../../../../styles';
 
+$halfWidth: 48%;
+
 :host {
   display: block;
   margin: $header-height + $header-padding-vertical*2 0 0 $left-menu-width;
@@ -7,8 +9,10 @@
 
   color: $color-main;
 
-  .projects-list {
-    width: 48%;
-    display: inline-block;
+  .projects-list, .boards-list {
+  }
+
+  md-tab-group {
+    width: $halfWidth;
   }
 }
