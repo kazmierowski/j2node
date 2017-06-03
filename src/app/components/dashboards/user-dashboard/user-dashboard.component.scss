@@ -6,4 +6,9 @@
   padding-top: $board-padding-top;
 
   color: $color-main;
+
+  .projects-list {
+    width: 48%;
+    display: inline-block;
+  }
 }
