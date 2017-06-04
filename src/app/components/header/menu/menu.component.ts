@@ -40,7 +40,6 @@ export class MenuComponent implements OnInit {
 
     public logout() {
         this.loginService.logout();
-        this.session = this.cookieService.get('session');
     }
 
     public login() {
