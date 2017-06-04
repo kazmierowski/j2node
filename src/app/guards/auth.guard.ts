@@ -17,7 +17,9 @@ export class AuthGuard implements CanActivate {
                 return true;
             }
         } else if (state.url !== '/login' && document.cookie.indexOf('session=') === -1) {
+            localStorage.setItem('lastUrl', state.url);
             this.router.navigate(['/login']);
+            return false;
         } else if (state.url === '/login' && document.cookie.indexOf('session=') === -1) {
             return true;
         }

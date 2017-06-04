@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from './login.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../models/User.model';
 import {GlobalVariableService} from '../../global-variable.service';
 
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     public userpass: string;
     public communicat: string;
 
-    constructor(private loginService: LoginService, private router: Router, private globalVariable: GlobalVariableService) {
+    constructor(private loginService: LoginService, private router: Router, private globalVariable: GlobalVariableService, private route: ActivatedRoute,) {
     }
 
     public login() {
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
             this.loginService.login(this.useremail, this.userpass).subscribe(
                 (res) => {
                     if (res !== false) {
-                        this.router.navigate(['/user-dashboard']);
+                        this.router.navigateByUrl(localStorage.getItem('lastUrl') || '/user-dashboard');
                     } else {
                         this.communicat = 'Incorrect password or login!';
                     }

@@ -86,7 +86,7 @@ const appRoutes: Routes = [
     MdMenuModule,
     MdGridListModule,
     MdTabsModule,
-    NgxChartsModule,
+    NgxChartsModule
   ],
   providers: [
       AuthGuard,
