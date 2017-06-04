@@ -2,12 +2,14 @@ import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs';
+import {CookieService} from "ng2-cookies";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class LoginService {
     loginURL = '/user/auth';
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private cookieService: CookieService, private router: Router) {
     }
 
     public login(useremail: string, userpass: string) {
@@ -20,6 +22,12 @@ export class LoginService {
         return this.http.post(this.loginURL, user, options) // ...using post request
             .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
+    }
+
+    public logout() {
+        console.log('usuwam cookie');
+        this.cookieService.delete('session');
+        this.router.navigate(['/j2node']);
     }
 
     public getLogin(useremail: string, password: string) {

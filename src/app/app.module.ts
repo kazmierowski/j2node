@@ -35,6 +35,8 @@ import {
 } from "@angular/material";
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import {CookieService} from "ng2-cookies";
+import {LoginService} from "./components/login/login.service";
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve: {globalVariables: VariableResolver}, children: [
@@ -95,7 +97,9 @@ const appRoutes: Routes = [
       ProjectResolver,
       ProjectDashboardService,
       BoardResolver,
-      BoardService
+      BoardService,
+      CookieService,
+      LoginService
   ],
   bootstrap: [AppComponent]
 })
