@@ -35,7 +35,7 @@ export class MenuComponent implements OnInit {
         );
         this.router.events.subscribe(() => {
             this.session = this.cookieService.get('session');
-        })
+        });
     }
 
     public logout() {
