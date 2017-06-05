@@ -22,4 +22,16 @@
     <md-icon>account_box</md-icon>
     <span>Your account</span>
   </button>
+
+  <button (click)="login()" *ngIf="session === ''; else logoutTemplate" md-menu-item>
+    <md-icon>add_circle_outline</md-icon>
+    <span>Login</span>
+  </button>
+
+  <ng-template #logoutTemplate>
+    <button (click)="logout()" md-menu-item>
+      <md-icon>remove_circle_outline</md-icon>
+      <span>Logout</span>
+    </button>
+  </ng-template>
 </md-menu>
