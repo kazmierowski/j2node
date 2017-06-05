@@ -25,7 +25,6 @@ export class LoginService {
     }
 
     public logout() {
-        console.log('usuwam cookie');
         this.cookieService.delete('session');
         this.router.navigate(['/j2node']);
     }
