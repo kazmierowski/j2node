@@ -7,11 +7,10 @@ export class MenuService {
 
   private menuFieldsUrl = './test/menu.json';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,) { }
 
   public getMenuFields() {
     return this.http.get(this.menuFieldsUrl)
         .map((res: Response) => res.json());
   }
-
 }
