@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BoardTicketService} from '../board-ticket/board-ticket.service';
-import {GlobalVariableService} from '../../../global-variable.service';
+import {GlobalVariableService} from '../../../services/global-variable.service';
 import {TicketFilters} from '../../../helpers/ticket.helper';
 import {ActivatedRoute} from '@angular/router';
 import {TicketStatus} from '../../../models/TicketStatus.model';

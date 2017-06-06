@@ -1,2 +1,3 @@
 <app-left-menu></app-left-menu>
+<div (click)="createTicket()">Create ticket</div>
 <app-board-column *ngFor="let column of columns | values" [column]="column" [columnSize]="columnCount"></app-board-column>

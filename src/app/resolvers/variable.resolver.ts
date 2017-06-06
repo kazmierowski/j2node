@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, RouterStateSnapshot, Resolve} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {GlobalVariableService} from '../global-variable.service';
+import {GlobalVariableService} from '../services/global-variable.service';
 import {isNumber} from 'util';
 
 @Injectable()

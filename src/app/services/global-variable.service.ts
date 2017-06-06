@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {User} from './models/User.model';
+import {User} from '../models/User.model';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Project} from './models/Project.model';
-import {Board} from './models/Board.model';
+import {Project} from '../models/Project.model';
+import {Board} from '../models/Board.model';
+import {sideMenuOptions} from '../settings/sideMenu';
 
 
 @Injectable()
@@ -86,5 +87,9 @@ export class GlobalVariableService {
                     );
                 }
             });
+    }
+
+    public getSideMenuOptions(component) {
+        return sideMenuOptions[component];
     }
 }

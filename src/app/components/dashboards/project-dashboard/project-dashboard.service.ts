@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {GlobalVariableService} from '../../../global-variable.service';
+import {GlobalVariableService} from '../../../services/global-variable.service';
 import {Ticket} from '../../../models/Ticket.model';
 import {TicketStatus} from '../../../models/TicketStatus.model';
 

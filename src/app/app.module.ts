@@ -15,7 +15,7 @@ import { BoardColumnComponent } from './components/board/board-column/column.com
 import { BackgroundColorDirective } from './directives/background-color.directive';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
-import {GlobalVariableService} from './global-variable.service';
+import {GlobalVariableService} from './services/global-variable.service';
 import {VariableResolver} from './resolvers/variable.resolver';
 import { UserDashboardComponent } from './components/dashboards/user-dashboard/user-dashboard.component';
 import { ProjectsListComponent } from './components/dashboards/projects-list/projects-list.component';
@@ -29,7 +29,7 @@ import {BoardService} from './components/board/board.service';
 import { ColumnSizeDirective } from './directives/column-size.directive';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
-    MaterialModule, MdButtonModule, MdCheckboxModule, MdGridListModule, MdIconModule, MdInputContainer,
+    MaterialModule, MdButtonModule, MdCheckboxModule, MdDialogModule, MdGridListModule, MdIconModule, MdInputContainer,
     MdInputDirective,
     MdInputModule, MdListModule, MdMenuModule, MdSidenav, MdSidenavModule, MdTabsModule
 } from "@angular/material";
@@ -37,6 +37,7 @@ import {NgxChartsModule} from "@swimlane/ngx-charts";
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {CookieService} from "ng2-cookies";
 import {LoginService} from "./components/login/login.service";
+import {CreateTicketComponent} from "./components/create/create-ticket/create-ticket.component";
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve: {globalVariables: VariableResolver}, children: [
@@ -61,16 +62,18 @@ const appRoutes: Routes = [
     BoardComponent,
     BoardTicketComponent,
     BoardColumnComponent,
-    BackgroundColorDirective,
     LoginComponent,
     UserDashboardComponent,
     ProjectsListComponent,
     ProjectDashboardComponent,
     BoardsListComponent,
     NotFoundComponent,
+    CreateTicketComponent,
     /**  pipes */
     ValuesPipe,
+    /** directives */
     ColumnSizeDirective,
+    BackgroundColorDirective,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -88,7 +91,11 @@ const appRoutes: Routes = [
     MdMenuModule,
     MdGridListModule,
     MdTabsModule,
-    NgxChartsModule
+    MdDialogModule,
+    NgxChartsModule,
+  ],
+  entryComponents: [
+    CreateTicketComponent
   ],
   providers: [
       AuthGuard,
