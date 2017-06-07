@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {MdDialogRef} from "@angular/material";
 
 @Component({
@@ -7,6 +7,8 @@ import {MdDialogRef} from "@angular/material";
   styleUrls: ['./create-ticket.component.scss']
 })
 export class CreateTicketComponent implements OnInit {
+
+  @Input('userProjects') userProjects;
 
   constructor(public dialogRef: MdDialogRef<any>, public elementRef: ElementRef) { }
 

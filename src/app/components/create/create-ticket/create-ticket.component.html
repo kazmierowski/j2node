@@ -1,3 +1,12 @@
-<p>
-  create-ticket works!
-</p>
+<h3 class="title underline">Create issue</h3>
+
+<form action="">
+    <md-input-container>
+        <input mdInput placeholder="Project" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+    </md-input-container>
+    <md-autocomplete #auto="mdAutocomplete">
+        <md-option *ngFor="let project of userProjects | value | async">
+            {{project.getName()}}
+        </md-option>
+    </md-autocomplete>
+</form>

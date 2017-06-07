@@ -29,7 +29,9 @@ import {BoardService} from './components/board/board.service';
 import { ColumnSizeDirective } from './directives/column-size.directive';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
-    MaterialModule, MdButtonModule, MdCheckboxModule, MdDialogModule, MdGridListModule, MdIconModule, MdInputContainer,
+    MaterialModule, MdAutocomplete, MdAutocompleteModule, MdButtonModule, MdCheckboxModule, MdDialogModule,
+    MdGridListModule, MdIconModule,
+    MdInputContainer,
     MdInputDirective,
     MdInputModule, MdListModule, MdMenuModule, MdSidenav, MdSidenavModule, MdTabsModule
 } from "@angular/material";
@@ -92,6 +94,7 @@ const appRoutes: Routes = [
     MdGridListModule,
     MdTabsModule,
     MdDialogModule,
+    MdAutocompleteModule,
     NgxChartsModule,
   ],
   entryComponents: [

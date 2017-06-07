@@ -21,9 +21,9 @@ export class BoardComponent implements OnInit {
     public project: Project;
     public columns = {};
     public columnCount: number;
+    private dialog;
 
-    constructor(private columnService: BoardColumnService,
-                private globalVariables: GlobalVariableService,
+    constructor(private globalVariables: GlobalVariableService,
                 private route: ActivatedRoute,
                 private filterByKey: FilterByKey,
                 private dialogService: DialogService) {
@@ -43,7 +43,8 @@ export class BoardComponent implements OnInit {
     }
 
     createTicket() {
-        this.dialogService.open(CreateTicketComponent, {});
+        this.dialog = this.dialogService.open(CreateTicketComponent, {height: '800px', width: '700px'});
+        this.dialog.componentInstance.userProjects = this.globalVariables.getGlobalUserProjects();
     }
 
 }

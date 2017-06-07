@@ -9,10 +9,12 @@ export class DialogService {
 
   constructor(private dialog: MdDialog) { }
 
-  open(component, options: object) {
+  open(component, options) {
     let dialogRef = this.dialog.open(component, {
-      height: '500px',
-      width: '600px'
-    })
+      height: options.height || '500px',
+      width: options.width || '600px'
+    });
+
+    return dialogRef;
   }
 }
