@@ -1,10 +1,9 @@
 <md-list>
-  <button md-button><md-icon>create</md-icon></button>
+  <button md-button (click)="createTicket.emit('createTicket')"><md-icon>create</md-icon></button>
   <button md-button routerLink="/user-dashboard"><md-icon>assessment</md-icon></button>
   <button md-button routerLink="/j2node"><md-icon>info</md-icon></button>
 </md-list>
 
 <div class="copyright">
   <div class="left-menu-version">j2node | v 0.1.0</div>
-
 </div>

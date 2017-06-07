@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router, RouterStateSnapshot} from "@angular/router";
 import {LocationStrategy} from "@angular/common";
 import {GlobalVariableService} from "../../services/global-variable.service";
@@ -12,15 +12,14 @@ import {LeftMenuService} from "./left-menu.service";
 })
 export class LeftMenuComponent implements OnInit {
 
-  public url: string;
+  @Output() createTicket: EventEmitter<string> = new EventEmitter();
+
   public menuOptions;
 
-  constructor(private globalVariables: GlobalVariableService, private service: LeftMenuService) { }
+  constructor(private service: LeftMenuService) { }
 
   ngOnInit() {
 
-    this.menuOptions = this.service.getMenuOptions();
-    console.log(this.menuOptions);
   }
 
 }

@@ -45,7 +45,7 @@ const appRoutes: Routes = [
             { path: 'j2node', component: LandingPageComponent },
             { path: 'user-dashboard', canActivate: [AuthGuard], component: UserDashboardComponent },
             { path: 'project/:projectId', canActivate: [AuthGuard], resolve: {project: ProjectResolver}, component: ProjectDashboardComponent },
-            { path: 'project/:projectId/board/:boardId', canActivate: [AuthGuard], resolve: {board: BoardResolver, project: ProjectResolver}, component: BoardComponent}
+            { path: 'project/:projectId/board/:boardId',  canActivate: [AuthGuard], resolve: {board: BoardResolver, project: ProjectResolver}, component: BoardComponent}
         ]},
         { path: 'login', canActivate: [AuthGuard], component: LoginComponent},
         { path: 'not-found', canActivate: [AuthGuard], component: NotFoundComponent},

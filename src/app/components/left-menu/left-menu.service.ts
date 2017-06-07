@@ -8,10 +8,6 @@ export class LeftMenuService {
   constructor(private globalVariables: GlobalVariableService, private router: ActivatedRoute) { }
 
   getMenuOptions() {
-    let route = this.router;
-    console.log(route);
-
-    this.globalVariables.getSideMenuOptions('board');
   }
 
 }

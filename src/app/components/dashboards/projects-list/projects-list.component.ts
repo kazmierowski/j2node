@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ProjectsListComponent implements OnInit {
 
   @Input('projects') projects;
-  @Input('title') title = true;
+  @Input('showTitle') showTitle = true;
 
   constructor() { }
 
