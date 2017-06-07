@@ -1,4 +1,4 @@
-<h3 *ngIf="showTitle === true">Boards:</h3>
+<h3 *ngIf="title === true">Boards:</h3>
 <md-list>
   <button md-button class="full-width" *ngFor="let board of boards | values" routerLink="board/{{board.getId()}}">{{board.getName()}}</button>
 </md-list>
