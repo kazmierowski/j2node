@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -33,7 +33,7 @@ import {
     MdGridListModule, MdIconModule,
     MdInputContainer,
     MdInputDirective,
-    MdInputModule, MdListModule, MdMenuModule, MdSidenav, MdSidenavModule, MdTabsModule
+    MdInputModule, MdListModule, MdMenuModule, MdSelectModule, MdSidenav, MdSidenavModule, MdTabsModule
 } from "@angular/material";
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -95,6 +95,8 @@ const appRoutes: Routes = [
     MdTabsModule,
     MdDialogModule,
     MdAutocompleteModule,
+    MdSelectModule,
+    ReactiveFormsModule,
     NgxChartsModule,
   ],
   entryComponents: [

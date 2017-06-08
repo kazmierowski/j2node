@@ -9,6 +9,9 @@ import {MdDialogRef} from "@angular/material";
 export class CreateTicketComponent implements OnInit {
 
   @Input('userProjects') userProjects;
+  @Input('issueTypes') issueTypes;
+
+  public project;
 
   constructor(public dialogRef: MdDialogRef<any>, public elementRef: ElementRef) { }
 

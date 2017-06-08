@@ -3,4 +3,9 @@
 :host {
   display: block;
 
+
+  .create-ticket-form {
+    margin: $margin-default auto;
+    width: 80%;
+  }
 }
