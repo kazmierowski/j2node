@@ -1,4 +1,4 @@
-<h3 *ngIf="title === true">Projects:</h3>
+<h3 *ngIf="showTitle === true">Projects:</h3>
 <md-list class="full-width">
   <button md-button class="full-width" *ngFor="let project of projects | values" routerLink="/project/{{project.getId()}}">{{project.getName()}}</button>
 </md-list>

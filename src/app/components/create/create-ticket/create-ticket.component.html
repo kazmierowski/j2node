@@ -1,0 +1,15 @@
+<h3 class="title underline">Create issue</h3>
+
+<form class="create-ticket-form" action="">
+    <md-select class="full-width" placeholder="Project" [(ngModel)]="project" name="project">
+        <md-option *ngFor="let project of userProjects | values" [value]="project.getId()">
+            {{project.getName()}}
+        </md-option>
+    </md-select>
+    <md-select class="full-width" placeholder="Issue type" [(ngModel)]="issueType" name="issueType">
+        <md-option *ngFor="let issueType of issueTypes | values" [value]="issueType.getId()">
+            {{issueType.getName()}}
+        </md-option>
+    </md-select>
+
+</form>
