@@ -8,12 +8,13 @@ import {Project} from '../../models/Project.model';
 import {FilterByKey} from '../../helpers/filters.helper';
 import {DialogService} from "../../services/dialog.service";
 import {CreateTicketComponent} from "../create/create-ticket/create-ticket.component";
+import {LeftMenuService} from "../left-menu/left-menu.service";
 
 @Component({
     selector: 'app-board',
     templateUrl: './board.component.html',
     styleUrls: ['./board.component.scss'],
-    providers: [BoardColumnService, FilterByKey, DialogService]
+    providers: [BoardColumnService, FilterByKey, DialogService, LeftMenuService]
 })
 export class BoardComponent implements OnInit {
 
@@ -26,7 +27,8 @@ export class BoardComponent implements OnInit {
     constructor(private globalVariables: GlobalVariableService,
                 private route: ActivatedRoute,
                 private filterByKey: FilterByKey,
-                private dialogService: DialogService) {
+                private dialogService: DialogService,
+                private leftMenuService: LeftMenuService) {
     }
 
     ngOnInit() {

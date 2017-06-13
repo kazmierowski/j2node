@@ -15,6 +15,7 @@ export class LeftMenuComponent implements OnInit {
   @Output() createTicket: EventEmitter<string> = new EventEmitter();
 
   public menuOptions;
+  public activeComponent;
 
   constructor(private service: LeftMenuService) { }
 

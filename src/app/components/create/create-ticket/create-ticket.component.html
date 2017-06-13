@@ -11,5 +11,24 @@
             {{issueType.getName()}}
         </md-option>
     </md-select>
+    <md-input-container class="full-width">
+        <input mdInput placeholder="Issue title" [(ngModel)]="title" name="title">
+    </md-input-container>
+    <md-input-container class="full-width">
+        <input mdInput placeholder="Reporter" [(ngModel)]="reporter" name="reporter">
+    </md-input-container>
+    <md-input-container class="full-width">
+        <textarea mdInput placeholder="Description" [(ngModel)]="description" name="reporter" rows="10"></textarea>
+    </md-input-container>
+    <md-select class="full-width" placeholder="Priority" [(ngModel)]="priority" name="priority">
+        <md-option *ngFor="let priority of priorityList | values" [value]="priority.getId()">
+            {{priority.getName()}}
+        </md-option>
+    </md-select>
+    <md-select class="full-width" placeholder="Label" [(ngModel)]="label" name="label">
+        <md-option *ngFor="let label of labelsList | values" [value]="label.getId()">
+            {{label.getName()}}
+        </md-option>
+    </md-select>
 
 </form>
