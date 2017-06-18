@@ -10,6 +10,7 @@ import {DialogService} from "../../services/dialog.service";
 import {CreateTicketComponent} from "../create/create-ticket/create-ticket.component";
 import {LeftMenuService} from "../left-menu/left-menu.service";
 import {CreateTicketService} from "../create/create-ticket/create-ticket.service";
+import {MdDialogConfig} from "@angular/material";
 
 @Component({
     selector: 'app-board',
@@ -23,7 +24,13 @@ export class BoardComponent implements OnInit {
     public project: Project;
     public columns = {};
     public columnCount: number;
+
     private dialog;
+    private createDialogActive = false;
+
+    private MdDialogConfig = {
+        disableClose: true
+    };
 
     constructor(private globalVariables: GlobalVariableService,
                 private route: ActivatedRoute,
@@ -43,23 +50,38 @@ export class BoardComponent implements OnInit {
                 this.board.getStatusesList()
             );
             this.columnCount = Object.keys(this.columns).length;
+
+            this.createTicketService.ticketObservable.subscribe(
+                ticket => {
+                    this.saveTicket(ticket);
+                }
+            )
         });
     }
 
     createTicket() {
-        this.dialog = this.dialogService.open(CreateTicketComponent, {height: '800px', width: '700px'});
-        this.dialog.componentInstance.userProjects = this.globalVariables.getGlobalUserProjects();
-        this.dialog.componentInstance.service = this.createTicketService; //not the best solution ...
-        this.createTicketService.ticketObservable.subscribe(
-            ticket => {
-                this.saveTicket(ticket);
-            }
-        )
+
+        if(this.createDialogActive === false) {
+            this.createDialogActive = true;
+            this.dialog = this.dialogService.open(CreateTicketComponent,
+                {
+                    height: '800px',
+                    width: '700px',
+                    disableClose: true
+                });
+            this.dialog.componentInstance.userProjects = this.globalVariables.getGlobalUserProjects();
+            this.dialog.componentInstance.service = this.createTicketService; //not the best solution ...
+            this.dialog.afterClosed().subscribe(
+                () => {
+                    this.createDialogActive = false
+                }
+            )
+        }
     }
 
     saveTicket(ticket) {
         console.log('ticket saved');
         this.dialog.close();
+        this.dialog = undefined;
     }
-
 }

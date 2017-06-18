@@ -7,14 +7,15 @@ export class DialogService {
 
   private dialogs: any[] = [];
 
+  private dialogConfig = {
+    width: '700px',
+    height: '800px',
+    disableClose: true
+  };
+
   constructor(private dialog: MdDialog) { }
 
   open(component, options) {
-    let dialogRef = this.dialog.open(component, {
-      height: options.height || '500px',
-      width: options.width || '600px'
-    });
-
-    return dialogRef;
+    return this.dialog.open(component, Object.assign(this.dialogConfig, options));
   }
 }

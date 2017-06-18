@@ -5,13 +5,26 @@
 
 
   .create-ticket-form {
+    position: relative;
     margin: $margin-default auto;
     width: 80%;
 
-    .save-button {
+    .action-section {
+      //position: fixed;
+      //bottom: 0;
+      //left: 0;
       margin-top: $margin-default;
-      float: right;
+      border-top: 1px solid $color-border-light;
+      width: 100%;
+
+      .save-button,
+      .cancel-btn {
+        margin-top: $margin-default;
+        float: right;
+        margin-left: $margin-default;
+      }
     }
+
 
     md-select:first-of-type {
       margin-top: $margin-default;
