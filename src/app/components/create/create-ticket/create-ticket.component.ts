@@ -41,6 +41,7 @@ export class CreateTicketComponent implements OnInit {
   cancelCreate() {
     // TODO: add confirmation dialog
     this.dialogRef.close();
+    // this.elementRef = undefined;
     console.log('Creation canceled');
   }
 
