@@ -25,10 +25,22 @@
             {{priority.getName()}}
         </md-option>
     </md-select>
-    <md-select class="full-width" placeholder="Label" [(ngModel)]="label" name="label">
+    <md-select class="full-width" placeholder="Label" [(ngModel)]="labelsList" name="label">
         <md-option *ngFor="let label of labelsList | values" [value]="label.getId()">
             {{label.getName()}}
         </md-option>
     </md-select>
+    <md-select class="full-width" placeholder="Assignee" [(ngModel)]="projectMembersList" name="assignee">
+        <md-option *ngFor="let assignee of projectMembersList | values" [value]="assignee.getId()">
+            {{assignee.getName()}}
+        </md-option>
+    </md-select>
+    <md-select class="full-width" placeholder="Sprint" [(ngModel)]="sprintList" name="sprint">
+        <md-option *ngFor="let sprint of sprintList | values" [value]="sprint.getId()">
+            {{sprint.getName()}}
+        </md-option>
+    </md-select>
+
+    <button md-button class="btn-main" (click)="saveTicket()">Save</button>
 
 </form>

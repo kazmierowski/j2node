@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {BoardColumnService} from './board-column/board-column.service';
 import {Column} from '../../models/Column.model';
 import {GlobalVariableService} from '../../services/global-variable.service';
@@ -9,12 +9,13 @@ import {FilterByKey} from '../../helpers/filters.helper';
 import {DialogService} from "../../services/dialog.service";
 import {CreateTicketComponent} from "../create/create-ticket/create-ticket.component";
 import {LeftMenuService} from "../left-menu/left-menu.service";
+import {CreateTicketService} from "../create/create-ticket/create-ticket.service";
 
 @Component({
     selector: 'app-board',
     templateUrl: './board.component.html',
     styleUrls: ['./board.component.scss'],
-    providers: [BoardColumnService, FilterByKey, DialogService, LeftMenuService]
+    providers: [BoardColumnService, FilterByKey, DialogService, LeftMenuService, CreateTicketService]
 })
 export class BoardComponent implements OnInit {
 
@@ -28,7 +29,8 @@ export class BoardComponent implements OnInit {
                 private route: ActivatedRoute,
                 private filterByKey: FilterByKey,
                 private dialogService: DialogService,
-                private leftMenuService: LeftMenuService) {
+                private leftMenuService: LeftMenuService,
+                private createTicketService: CreateTicketService) {
     }
 
     ngOnInit() {
@@ -47,6 +49,17 @@ export class BoardComponent implements OnInit {
     createTicket() {
         this.dialog = this.dialogService.open(CreateTicketComponent, {height: '800px', width: '700px'});
         this.dialog.componentInstance.userProjects = this.globalVariables.getGlobalUserProjects();
+        this.dialog.componentInstance.service = this.createTicketService; //not the best solution ...
+        this.createTicketService.ticketObservable.subscribe(
+            ticket => {
+                this.saveTicket(ticket);
+            }
+        )
+    }
+
+    saveTicket(ticket) {
+        console.log('ticket saved');
+        this.dialog.close();
     }
 
 }
