@@ -23,7 +23,9 @@ export class CreateTicketComponent implements OnInit {
   public title;
   public reporter;
   public description;
+  public points;
   public priority;
+  public steps = [2, 3, 6, 8];
 
   private service;
 
@@ -34,6 +36,12 @@ export class CreateTicketComponent implements OnInit {
 
   saveTicket() {
     this.service.saveTicket({name: 'test-ticket'});
+  }
+
+  cancelCreate() {
+    // TODO: add confirmation dialog
+    this.dialogRef.close();
+    console.log('Creation canceled');
   }
 
 }

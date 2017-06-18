@@ -23,6 +23,7 @@ export class BoardComponent implements OnInit {
     public project: Project;
     public columns = {};
     public columnCount: number;
+
     private dialog;
 
     constructor(private globalVariables: GlobalVariableService,
@@ -44,12 +45,7 @@ export class BoardComponent implements OnInit {
             );
             this.columnCount = Object.keys(this.columns).length;
         });
-    }
 
-    createTicket() {
-        this.dialog = this.dialogService.open(CreateTicketComponent, {height: '800px', width: '700px'});
-        this.dialog.componentInstance.userProjects = this.globalVariables.getGlobalUserProjects();
-        this.dialog.componentInstance.service = this.createTicketService; //not the best solution ...
         this.createTicketService.ticketObservable.subscribe(
             ticket => {
                 this.saveTicket(ticket);
@@ -57,9 +53,14 @@ export class BoardComponent implements OnInit {
         )
     }
 
+    createTicket() {
+        this.dialog = this.dialogService.open(CreateTicketComponent, {height: '800px', width: '700px'});
+        this.dialog.componentInstance.userProjects = this.globalVariables.getGlobalUserProjects();
+        this.dialog.componentInstance.service = this.createTicketService; //not the best solution ...
+    }
+
     saveTicket(ticket) {
         console.log('ticket saved');
         this.dialog.close();
     }
-
 }

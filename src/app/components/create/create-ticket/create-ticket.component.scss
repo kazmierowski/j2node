@@ -8,9 +8,11 @@
     margin: $margin-default auto;
     width: 80%;
 
-    .save-button {
+    .save-button,
+    .cancel-btn {
       margin-top: $margin-default;
       float: right;
+      margin-left: $margin-default;
     }
 
     md-select:first-of-type {

@@ -20,6 +20,13 @@
     <md-input-container class="full-width">
         <textarea mdInput placeholder="Description" [(ngModel)]="description" name="reporter" rows="10"></textarea>
     </md-input-container>
+
+    <md-slider class="full-width" [(ngModel)]="points" name="points"
+    [disabled]=false
+    [max]=100
+    [min]=0
+    [thumb-label]=true></md-slider>
+
     <md-select class="full-width" placeholder="Priority" [(ngModel)]="priority" name="priority">
         <md-option *ngFor="let priority of priorityList | values" [value]="priority.getId()">
             {{priority.getName()}}
@@ -42,5 +49,5 @@
     </md-select>
 
     <button md-button class="btn-main save-button" (click)="saveTicket()">Save</button>
-
+    <button md-button class="cancel-btn" (click)="cancelCreate()">cancel</button>
 </form>
