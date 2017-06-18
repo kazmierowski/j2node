@@ -40,6 +40,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import {CookieService} from "ng2-cookies";
 import {LoginService} from "./components/login/login.service";
 import {CreateTicketComponent} from "./components/create/create-ticket/create-ticket.component";
+import {LeftMenuService} from "./components/left-menu/left-menu.service";
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve: {globalVariables: VariableResolver}, children: [

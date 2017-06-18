@@ -7,5 +7,22 @@
   .create-ticket-form {
     margin: $margin-default auto;
     width: 80%;
+
+    .save-button {
+      margin-top: $margin-default;
+      float: right;
+    }
+
+    md-select:first-of-type {
+      margin-top: $margin-default;
+    }
+
+    md-input-container,
+    md-select {
+      margin-bottom: $margin-default;
+    }
+
+
   }
+
 }

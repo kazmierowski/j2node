@@ -1,5 +1,6 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MdDialogRef} from "@angular/material";
+import {CreateTicketService} from "./create-ticket.service";
 
 @Component({
   selector: 'app-create-ticket',
@@ -10,12 +11,29 @@ export class CreateTicketComponent implements OnInit {
 
   @Input('userProjects') userProjects;
   @Input('issueTypes') issueTypes;
+  @Input('priorityList') priorityList;
+  @Input('labelsList') labelsList;
+  @Input('projectMembersList') projectMembersList;
+  @Input('sprintList') sprintList;
+
+
 
   public project;
+  public issueType;
+  public title;
+  public reporter;
+  public description;
+  public priority;
+
+  private service;
 
   constructor(public dialogRef: MdDialogRef<any>, public elementRef: ElementRef) { }
 
   ngOnInit() {
+  }
+
+  saveTicket() {
+    this.service.saveTicket({name: 'test-ticket'});
   }
 
 }
