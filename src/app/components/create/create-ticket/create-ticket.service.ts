@@ -20,6 +20,4 @@ export class CreateTicketService {
 
     this.ticket.next(ticket);
   }
-
-
 }
