@@ -10,7 +10,7 @@ import {DialogService} from "../../services/dialog.service";
 import {CreateTicketComponent} from "../create/create-ticket/create-ticket.component";
 import {LeftMenuService} from "../left-menu/left-menu.service";
 import {CreateTicketService} from "../create/create-ticket/create-ticket.service";
-import {MdDialogConfig} from "@angular/material";
+import {MdDialogConfig, MdSnackBarModule, MdSnackBar} from "@angular/material";
 
 @Component({
     selector: 'app-board',
@@ -34,7 +34,8 @@ export class BoardComponent implements OnInit {
                 private filterByKey: FilterByKey,
                 private dialogService: DialogService,
                 private leftMenuService: LeftMenuService,
-                private createTicketService: CreateTicketService) {
+                private createTicketService: CreateTicketService,
+                private snackBar: MdSnackBar) {
     }
 
     ngOnInit() {
@@ -81,5 +82,6 @@ export class BoardComponent implements OnInit {
         console.log('ticket saved');
         this.dialog.close();
         this.dialog = undefined;
+        this.snackBar.open('Ticket saved', 'Undo', {duration: 3000});
     }
 }
