@@ -15,7 +15,7 @@ import { BoardColumnComponent } from './components/board/board-column/column.com
 import { BackgroundColorDirective } from './directives/background-color.directive';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
-import {GlobalVariableService} from './services/global-variable.service';
+import {GlobalVariableService} from './services/global-data.service';
 import {VariableResolver} from './resolvers/variable.resolver';
 import { UserDashboardComponent } from './components/dashboards/user-dashboard/user-dashboard.component';
 import { ProjectsListComponent } from './components/dashboards/projects-list/projects-list.component';
@@ -42,6 +42,7 @@ import {CookieService} from "ng2-cookies";
 import {LoginService} from "./components/login/login.service";
 import {CreateTicketComponent} from "./components/create/create-ticket/create-ticket.component";
 import {LeftMenuService} from "./components/left-menu/left-menu.service";
+import {GlobalSettingsService} from "./services/global-settings.service";
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve: {globalVariables: VariableResolver}, children: [
@@ -101,7 +102,7 @@ const appRoutes: Routes = [
     MdSliderModule,
     MdSnackBarModule,
     ReactiveFormsModule,
-    NgxChartsModule,
+    NgxChartsModule
   ],
   entryComponents: [
     CreateTicketComponent
@@ -109,6 +110,7 @@ const appRoutes: Routes = [
   providers: [
       AuthGuard,
       GlobalVariableService,
+      GlobalSettingsService,
       VariableResolver,
       ProjectResolver,
       ProjectDashboardService,

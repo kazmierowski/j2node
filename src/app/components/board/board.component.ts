@@ -1,7 +1,6 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BoardColumnService} from './board-column/board-column.service';
-import {Column} from '../../models/Column.model';
-import {GlobalVariableService} from '../../services/global-variable.service';
+import {GlobalVariableService} from '../../services/global-data.service';
 import {ActivatedRoute} from '@angular/router';
 import {Board} from '../../models/Board.model';
 import {Project} from '../../models/Project.model';
@@ -10,7 +9,8 @@ import {DialogService} from "../../services/dialog.service";
 import {CreateTicketComponent} from "../create/create-ticket/create-ticket.component";
 import {LeftMenuService} from "../left-menu/left-menu.service";
 import {CreateTicketService} from "../create/create-ticket/create-ticket.service";
-import {MdDialogConfig, MdSnackBarModule, MdSnackBar} from "@angular/material";
+import {MdSnackBar} from "@angular/material";
+import {GlobalSettingsService} from "../../services/global-settings.service";
 
 @Component({
     selector: 'app-board',
@@ -33,9 +33,9 @@ export class BoardComponent implements OnInit {
                 private route: ActivatedRoute,
                 private filterByKey: FilterByKey,
                 private dialogService: DialogService,
-                private leftMenuService: LeftMenuService,
                 private createTicketService: CreateTicketService,
-                private snackBar: MdSnackBar) {
+                private snackBar: MdSnackBar,
+                private globalSettings: GlobalSettingsService) {
     }
 
     ngOnInit() {
@@ -79,9 +79,18 @@ export class BoardComponent implements OnInit {
     }
 
     saveTicket(ticket) {
+        // todo: add save ticket functionality
         console.log('ticket saved');
         this.dialog.close();
         this.dialog = undefined;
-        this.snackBar.open('Ticket saved', 'Undo', {duration: 3000});
+        let saveConfirmation = this.snackBar.open('Ticket saved', 'Undo', {duration: 3000});
+        saveConfirmation.onAction().subscribe(
+            () => this.unSaveTicket(2 /* hardcoded value */)
+        )
+    }
+
+    unSaveTicket(ticketId) {
+        // todo: add unSave functionality
+        console.log('ticket with id: ' + ticketId + ' unsaved');
     }
 }

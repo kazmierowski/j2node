@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectDashboardService} from './project-dashboard.service';
 import {ActivatedRoute} from '@angular/router';
-import {GlobalVariableService} from '../../../services/global-variable.service';
+import {GlobalVariableService} from '../../../services/global-data.service';
 import {FilterByKey} from '../../../helpers/filters.helper';
 
 @Component({
