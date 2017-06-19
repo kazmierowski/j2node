@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {ProjectDashboardService} from '../components/dashboards/project-dashboard/project-dashboard.service';
 import {Board} from '../models/Board.model';
 import {BoardService} from '../components/board/board.service';
-import {GlobalVariableService} from "../services/global-variable.service";
+import {GlobalVariableService} from "../services/global-data.service";
 
 @Injectable()
 export class BoardResolver implements Resolve<Board> {

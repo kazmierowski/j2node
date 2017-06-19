@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router, RouterStateSnapshot} from "@angular/router";
 import {LocationStrategy} from "@angular/common";
-import {GlobalVariableService} from "../../services/global-variable.service";
+import {GlobalVariableService} from "../../services/global-data.service";
 import {LeftMenuService} from "./left-menu.service";
 
 @Component({

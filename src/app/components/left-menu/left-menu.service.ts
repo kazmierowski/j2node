@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {GlobalVariableService} from "../../services/global-variable.service";
+import {GlobalVariableService} from "../../services/global-data.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
