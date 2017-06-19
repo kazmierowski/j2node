@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, RouterStateSnapshot, Resolve} from '@angular/rou
 import {Observable} from 'rxjs/Observable';
 import {Project} from '../models/Project.model';
 import {ProjectDashboardService} from '../components/dashboards/project-dashboard/project-dashboard.service';
-import {GlobalVariableService} from "../global-variable.service";
+import {GlobalVariableService} from "../services/global-variable.service";
 
 @Injectable()
 export class ProjectResolver implements Resolve<Project> {

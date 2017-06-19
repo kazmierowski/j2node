@@ -1,0 +1,56 @@
+<h2 class="title underline">Create issue</h2>
+
+<form class="create-ticket-form" action="">
+    <md-select class="full-width" placeholder="Project" [(ngModel)]="project" name="project">
+        <md-option *ngFor="let project of userProjects | values" [value]="project.getId()">
+            {{project.getName()}}
+        </md-option>
+    </md-select>
+    <md-select class="full-width" placeholder="Issue type" [(ngModel)]="ticketType" name="issueType">
+        <md-option *ngFor="let ticketType of ticketTypes | values" [value]="ticketType.getId()">
+            {{ticketType.getName()}}
+        </md-option>
+    </md-select>
+    <md-input-container class="full-width">
+        <input mdInput placeholder="Issue title" [(ngModel)]="title" name="title">
+    </md-input-container>
+    <md-input-container class="full-width">
+        <input mdInput placeholder="Reporter" [(ngModel)]="reporter" name="reporter">
+    </md-input-container>
+    <md-input-container class="full-width">
+        <textarea mdInput placeholder="Description" [(ngModel)]="description" name="reporter" rows="10"></textarea>
+    </md-input-container>
+
+    <md-slider class="full-width" [(ngModel)]="points" name="points"
+    [disabled]=false
+    [max]=100
+    [min]=0
+    [thumb-label]=true></md-slider>
+
+    <md-select class="full-width" placeholder="Priority" [(ngModel)]="priority" name="priority">
+        <md-option *ngFor="let priority of priorityList | values" [value]="priority.getId()">
+            {{priority.getName()}}
+        </md-option>
+    </md-select>
+    <md-select class="full-width" placeholder="Label" [(ngModel)]="labelsList" name="label">
+        <md-option *ngFor="let label of labelsList | values" [value]="label.getId()">
+            {{label.getName()}}
+        </md-option>
+    </md-select>
+    <md-select class="full-width" placeholder="Assignee" [(ngModel)]="projectMembersList" name="assignee">
+        <md-option *ngFor="let assignee of projectMembersList | values" [value]="assignee.getId()">
+            {{assignee.getName()}}
+        </md-option>
+    </md-select>
+    <md-select class="full-width" placeholder="Sprint" [(ngModel)]="sprintList" name="sprint">
+        <md-option *ngFor="let sprint of sprintList | values" [value]="sprint.getId()">
+            {{sprint.getName()}}
+        </md-option>
+    </md-select>
+
+    <div class="action-section">
+        <button md-button class="btn-main save-button" (click)="saveTicket()">Save</button>
+        <button md-button class="cancel-btn" (click)="cancelCreate()">cancel</button>
+    </div>
+
+</form>

@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {GlobalVariableService} from '../../../global-variable.service';
+import {GlobalVariableService} from '../../../services/global-variable.service';
 import {Ticket} from '../../../models/Ticket.model';
 import {TicketStatus} from '../../../models/TicketStatus.model';
+import {TicketType} from "../../../models/TicketType";
 
 @Injectable()
 export class ProjectDashboardService {
@@ -19,6 +20,7 @@ export class ProjectDashboardService {
                 const table = [];
                 const tickets = {};
                 const statuses = {};
+                const ticketTypes = {};
 
                 for (const id of res.boardsId) {
                     table.push(id.boardId);
@@ -62,6 +64,16 @@ export class ProjectDashboardService {
                 }
                 this.globalVariables.getGlobalUserProjects()[projectId]
                     .setStatuses(statuses);
+
+                for(const ticketType of res.ticketTypes) {
+                    ticketTypes[ticketType.ticketType_id] = new TicketType(
+                        ticketType['ticketType_id'],
+                        ticketType['ticketType_name']
+                    )
+                }
+
+                this.globalVariables.getGlobalUserProjects()[projectId]
+                    .setTicketTypes(ticketTypes);
 
                 this.globalVariables.getGlobalUserProjects()[projectId]
                     .setFullFetch(true);
