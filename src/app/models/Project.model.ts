@@ -12,6 +12,7 @@ export class Project {
     private _fullFetch = false;
     private _tickets:  object;
     private _statuses: object;
+    private _ticketTypes: object;
     private _boardsList: Array<number>;
     private _usersList: Array<number>; // list of user ids
 
@@ -66,4 +67,13 @@ export class Project {
     public getFullFetch(): boolean {
         return this._fullFetch;
     }
+
+    public setTicketTypes(ticketTypes: object) {
+        this._ticketTypes = ticketTypes;
+    }
+
+    public getTicketTypes(): object {
+        return this._ticketTypes;
+    }
+
 }

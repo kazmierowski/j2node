@@ -19,7 +19,7 @@ export class CreateTicketComponent implements OnInit {
 
 
   public project;
-  public issueType;
+  public ticketType;
   public title;
   public reporter;
   public description;
@@ -41,7 +41,6 @@ export class CreateTicketComponent implements OnInit {
   cancelCreate() {
     // TODO: add confirmation dialog
     this.dialogRef.close();
-    // this.elementRef = undefined;
     console.log('Creation canceled');
   }
 

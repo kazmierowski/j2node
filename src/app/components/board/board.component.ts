@@ -22,15 +22,12 @@ export class BoardComponent implements OnInit {
 
     public board: Board;
     public project: Project;
+    public ticketTypes = {};
     public columns = {};
     public columnCount: number;
 
     private dialog;
     private createDialogActive = false;
-
-    private MdDialogConfig = {
-        disableClose: true
-    };
 
     constructor(private globalVariables: GlobalVariableService,
                 private route: ActivatedRoute,
@@ -69,8 +66,9 @@ export class BoardComponent implements OnInit {
                     width: '700px',
                     disableClose: true
                 });
-            this.dialog.componentInstance.userProjects = this.globalVariables.getGlobalUserProjects();
             this.dialog.componentInstance.service = this.createTicketService; //not the best solution ...
+            this.dialog.componentInstance.ticketTypes = this.project.getTicketTypes();
+            this.dialog.componentInstance.userProjects = this.globalVariables.getGlobalUserProjects();
             this.dialog.afterClosed().subscribe(
                 () => {
                     this.createDialogActive = false

@@ -6,9 +6,9 @@
             {{project.getName()}}
         </md-option>
     </md-select>
-    <md-select class="full-width" placeholder="Issue type" [(ngModel)]="issueType" name="issueType">
-        <md-option *ngFor="let issueType of issueTypes | values" [value]="issueType.getId()">
-            {{issueType.getName()}}
+    <md-select class="full-width" placeholder="Issue type" [(ngModel)]="ticketType" name="issueType">
+        <md-option *ngFor="let ticketType of ticketTypes | values" [value]="ticketType.getId()">
+            {{ticketType.getName()}}
         </md-option>
     </md-select>
     <md-input-container class="full-width">
@@ -20,7 +20,6 @@
     <md-input-container class="full-width">
         <textarea mdInput placeholder="Description" [(ngModel)]="description" name="reporter" rows="10"></textarea>
     </md-input-container>
-
 
     <md-slider class="full-width" [(ngModel)]="points" name="points"
     [disabled]=false
