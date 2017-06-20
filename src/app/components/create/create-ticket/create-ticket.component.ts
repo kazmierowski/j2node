@@ -17,7 +17,7 @@ export class CreateTicketComponent implements OnInit {
   @Input('sprintList') sprintList;
 
 
-
+  /** ticket inputs */
   public project;
   public ticketType;
   public title;
@@ -27,6 +27,8 @@ export class CreateTicketComponent implements OnInit {
   public priority;
   public steps = [2, 3, 6, 8];
 
+  /** provided */
+  public ticketTypes;
   private service;
 
   constructor(public dialogRef: MdDialogRef<any>, public elementRef: ElementRef) { }

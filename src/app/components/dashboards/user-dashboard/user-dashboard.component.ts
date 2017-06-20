@@ -12,7 +12,7 @@ export class UserDashboardComponent implements OnInit {
   public projects;
   public boards;
 
-  constructor(private globalVariables: GlobalVariableService) { }
+  constructor(public globalVariables: GlobalVariableService) { }
 
   ngOnInit() {
     this.user = this.globalVariables.getGlobalUser();
