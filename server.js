@@ -21,6 +21,22 @@ const board = require('./server/routes/board');
 
 const app = express();
 
+const ENV = process.argv[2];
+
+const cacheTime = (function() {
+
+    switch(ENV) {
+        case 'dev':
+            return 0;
+            break;
+        case 'prod':
+            return 15552000000; // six months
+            break;
+        default:
+            return 0;
+    }
+}());
+
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -61,7 +77,7 @@ app.use(session({
 }));
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist'), { maxAge: cacheTime }));
 
 // todo: CORS domain - to be removed on live
 app.use(function (req, res, next) {

@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serve": "ng build && node server"
+    "serve": "ng build && node server",
+    "serve_prod": "ng build --prod --aot && node server.js \"prod\""
   },
   "private": true,
   "dependencies": {
