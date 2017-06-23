@@ -14,6 +14,15 @@ After that run `node server.js` for a dev server. Navigate to `http://localhost:
 
 You can use shorthand for that: `npm run-script serve` which will do both :)
 
+## Production deployment
+To deploy on production server (or as a production server) pls use command: `npm run-script serve_prod`
+
+Options applied:
+- ahead of time compilation
+- browser cache for static files set up to 6 months
+- minification of all scripts
+- hash added to every bundle script
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
