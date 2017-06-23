@@ -21,7 +21,7 @@ const board = require('./server/routes/board');
 
 const app = express();
 
-const ENV = process.argv[2];
+const ENV = process.env.env;
 
 const cacheTime = (function() {
 
