@@ -11,7 +11,7 @@
     "e2e": "ng e2e",
     "serve": "ng build && node server",
     "serve_fake_prod": "ng build --prod --aot && env=prod node server.js",
-    "serve_prod": "ng build --prod --aot && env=prod pm2 start sever.js -i 3"
+    "serve_prod": "ng build --prod --aot && env=prod pm2 start server.js -i 3"
   },
   "private": true,
   "dependencies": {
