@@ -1,7 +1,19 @@
 <md-list>
-  <button md-button (click)="createTicket.emit('createTicket')"><md-icon>create</md-icon></button>
-  <button md-button routerLink="/user-dashboard"><md-icon>assessment</md-icon></button>
-  <button md-button routerLink="/j2node"><md-icon>info</md-icon></button>
+  <button
+          mdTooltip="create ticket"
+          mdTooltipPosition="right"
+          mdTooltipShowDelay="500"
+          md-button (click)="createTicket.emit('createTicket')"><md-icon>create</md-icon></button>
+  <button mdTooltip="dashboard"
+          mdTooltipPosition="right"
+          mdTooltipShowDelay="500"
+          md-button
+          routerLink="/user-dashboard"><md-icon>assessment</md-icon></button>
+  <button
+          mdTooltip="learn more"
+          mdTooltipPosition="right"
+          mdTooltipShowDelay="500"
+          md-button routerLink="/j2node"><md-icon>info</md-icon></button>
 </md-list>
 
 <div class="copyright">

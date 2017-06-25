@@ -34,7 +34,7 @@ import {
     MdInputContainer,
     MdInputDirective,
     MdInputModule, MdListModule, MdMenuModule, MdSelectModule, MdSidenav, MdSidenavModule, MdSliderModule,
-    MdSnackBarModule, MdTabsModule
+    MdSnackBarModule, MdTabsModule, MdTooltipModule
 } from "@angular/material";
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -101,6 +101,7 @@ const appRoutes: Routes = [
     MdSelectModule,
     MdSliderModule,
     MdSnackBarModule,
+    MdTooltipModule,
     ReactiveFormsModule,
     NgxChartsModule
   ],
