@@ -14,9 +14,13 @@
     <md-input-container class="full-width">
         <input mdInput placeholder="Issue title" [(ngModel)]="title" name="title" required>
     </md-input-container>
-    <md-input-container class="full-width">
-        <input mdInput placeholder="Reporter" [(ngModel)]="reporter" name="reporter" required>
-    </md-input-container>
+
+    <md-select class="full-width" placeholder="Reporter" [(ngModel)]="reporter" name="reporter">
+        <md-option *ngFor="let reporter of projectUsers | values" [value]="reporter.getId()">
+            {{reporter.getFirstName() + ' ' + reporter.getLastName()}}
+        </md-option>
+    </md-select>
+
     <md-input-container class="full-width">
         <textarea mdInput placeholder="Description" [(ngModel)]="description" name="description" rows="10"></textarea>
     </md-input-container>
@@ -37,9 +41,9 @@
             {{label.getName()}}
         </md-option>
     </md-select>
-    <md-select class="full-width" placeholder="Assignee" [(ngModel)]="projectMembersList" name="assignee">
-        <md-option *ngFor="let assignee of projectMembersList | values" [value]="assignee.getId()">
-            {{assignee.getName()}}
+    <md-select class="full-width" placeholder="Assignee" [(ngModel)]="assigne" name="assignee">
+        <md-option *ngFor="let assignee of projectUsers | values" [value]="assignee.getId()">
+            {{assignee.getFirstName() + ' ' + assignee.getLastName()}}
         </md-option>
     </md-select>
     <md-select class="full-width" placeholder="Sprint" [(ngModel)]="sprintList" name="sprint">

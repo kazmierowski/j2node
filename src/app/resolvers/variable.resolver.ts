@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, RouterStateSnapshot, Resolve} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {GlobalVariableService} from '../services/global-data.service';
-import {isNumber} from 'util';
 
 @Injectable()
 export class VariableResolver implements Resolve<any> {

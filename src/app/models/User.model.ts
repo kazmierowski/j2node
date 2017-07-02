@@ -13,6 +13,7 @@ export class User {
     private _country: string;
     private _city: string;
     private _street: string;
+    private _fullFetch: boolean;
 
     // user view variables
 
@@ -20,7 +21,7 @@ export class User {
     private _userBoards: object; // change to Board type
 
 
-    constructor(id: number, firstName: string, lastName: string, email: string, phone: string, country: string, city: string, street: string, userProjects: Array<number>, userBoards: Array<number>) {
+    constructor(id: number, firstName: string, lastName: string, email: string, phone?: string, country?: string, city?: string, street?: string, userProjects?: Array<number>, userBoards?: Array<number>, fullFetch: boolean = false) {
         this._id = id;
         this._firstName = firstName;
         this._lastName = lastName;
@@ -31,6 +32,27 @@ export class User {
         this._street = street;
         this._userProjects = userProjects;
         this._userBoards = userBoards;
+        this._fullFetch = fullFetch;
+    }
+
+    public getId(): number {
+        return this._id;
+    }
+
+    public getFirstName(): string {
+        return this._firstName;
+    }
+
+    public getLastName(): string {
+        return this._lastName;
+    }
+
+    public setFullFetch(fetchStatus: boolean) {
+        this._fullFetch = fetchStatus;
+    }
+
+    public getFullFetch(): boolean {
+        return this._fullFetch;
     }
 
     public getUserFirstName(): string {

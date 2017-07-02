@@ -16,7 +16,10 @@ let getFullFrontentData = (projectId, callback) => {
                 _data.statuses = statuses;
                 getTicketTypes((types) => {
                     _data.ticketTypes = types;
-                    callback(_data);
+                    getAllUsers(projectId, (users) => {
+                        _data.projectUsers = users;
+                        callback(_data);
+                    });
                 })
             })
         })
@@ -63,6 +66,17 @@ let getTicketTypes = (callback) => {
 
     connection.query('SELECT * FROM ticketType_tab', (e, rows, fields) => {
         callback(rows);
+    });
+
+    connection.end();
+};
+
+let getAllUsers = (projectId, callback) => {
+
+    let connection = connect.createConnection();
+
+    connection.query('CALL getProjectUsers("' + projectId + '")', (e, rows, fields) => {
+        callback(rows[0]);
     });
 
     connection.end();

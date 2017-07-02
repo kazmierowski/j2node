@@ -13,8 +13,8 @@ export class Project {
     private _tickets:  object;
     private _statuses: object;
     private _ticketTypes: object;
+    private _users: object;
     private _boardsList: Array<number>;
-    private _usersList: Array<number>; // list of user ids
 
 
     constructor(id: number, name: string, admin: number, fullFetch?: boolean, boardsList?: Array<number>/*, boardsList: Array<Board>, usersList: Array<number>, statusesList: Array<number>*/) {
@@ -74,6 +74,14 @@ export class Project {
 
     public getTicketTypes(): object {
         return this._ticketTypes;
+    }
+
+    public getUsers(): object {
+        return this._users;
+    }
+
+    public setUsers(users: object) {
+        this._users = users;
     }
 
 }

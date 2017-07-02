@@ -70,6 +70,8 @@ export class BoardComponent implements OnInit {
             this.dialog.componentInstance.service = this.createTicketService; //not the best solution ...
             this.dialog.componentInstance.ticketTypes = this.project.getTicketTypes();
             this.dialog.componentInstance.userProjects = this.globalVariables.getGlobalUserProjects();
+            this.dialog.componentInstance.projectUsers = this.project.getUsers();
+            this.dialog.componentInstance.activeProject = this.project.getId();
             this.dialog.afterClosed().subscribe(
                 () => {
                     this.createDialogActive = false

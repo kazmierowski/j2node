@@ -1,6 +1,7 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {MdDialogRef} from "@angular/material";
-import {CreateTicketService} from "./create-ticket.service";
+import {GlobalVariableService} from "../../../services/global-data.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-create-ticket',
@@ -22,6 +23,7 @@ export class CreateTicketComponent implements OnInit {
   public ticketType;
   public title;
   public reporter;
+  public assigne;
   public description;
   public points;
   public priority;
@@ -29,11 +31,24 @@ export class CreateTicketComponent implements OnInit {
 
   /** provided */
   public ticketTypes;
+  public projectUsers;
   private service;
+  private activeProject;
 
-  constructor(public dialogRef: MdDialogRef<any>, public elementRef: ElementRef) { }
+  constructor(
+      public dialogRef: MdDialogRef<any>,
+      public elementRef: ElementRef,
+      private globalVariables: GlobalVariableService,
+      private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
+    this.project = this.activeProject;
+    this.reporter = this.getCreatorId();
+  }
+
+  getCreatorId() {
+    return this.globalVariables.getGlobalUser().getId();
   }
 
   saveTicket() {
