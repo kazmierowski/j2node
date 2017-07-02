@@ -5,6 +5,7 @@ import {GlobalVariableService} from '../../../services/global-data.service';
 import {Ticket} from '../../../models/Ticket.model';
 import {TicketStatus} from '../../../models/TicketStatus.model';
 import {TicketType} from "../../../models/TicketType";
+import {User} from "../../../models/User.model";
 
 @Injectable()
 export class ProjectDashboardService {
@@ -21,6 +22,7 @@ export class ProjectDashboardService {
                 const tickets = {};
                 const statuses = {};
                 const ticketTypes = {};
+                const projectUsers = {};
 
                 for (const id of res.boardsId) {
                     table.push(id.boardId);
@@ -74,6 +76,18 @@ export class ProjectDashboardService {
 
                 this.globalVariables.getGlobalUserProjects()[projectId]
                     .setTicketTypes(ticketTypes);
+
+                for(const projectUser of res.projectUsers) {
+                    projectUsers[projectUser.user_id] = new User(
+                        projectUser['user_id'],
+                        projectUser['user_firstName'],
+                        projectUser['user_lastName'],
+                        projectUser['user_email']
+                    )
+                }
+
+                this.globalVariables.getGlobalUserProjects()[projectId]
+                    .setUsers(projectUsers);
 
                 this.globalVariables.getGlobalUserProjects()[projectId]
                     .setFullFetch(true);
