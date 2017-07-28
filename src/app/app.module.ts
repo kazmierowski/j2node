@@ -43,6 +43,8 @@ import {LoginService} from "./components/login/login.service";
 import {CreateTicketComponent} from "./components/create/create-ticket/create-ticket.component";
 import {LeftMenuService} from "./components/left-menu/left-menu.service";
 import {GlobalSettingsService} from "./services/global-settings.service";
+import { CreateBoardComponent } from './components/create/create-board/create-board.component';
+import { CreateProjectComponent } from './components/create/create-project/create-project.component';
 
 const appRoutes: Routes = [
         { path: '', canActivate: [AuthGuard], resolve: {globalVariables: VariableResolver}, children: [
@@ -79,6 +81,8 @@ const appRoutes: Routes = [
     /** directives */
     ColumnSizeDirective,
     BackgroundColorDirective,
+    CreateBoardComponent,
+    CreateProjectComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
