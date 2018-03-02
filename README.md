@@ -1,4 +1,5 @@
-# J2node
+# J2node: 
+*repository moved to BitBucket*
 
 **Angular 4** on the front-end and **nodeJS** on the back-end.
 
